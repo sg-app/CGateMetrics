@@ -32,17 +32,9 @@ namespace CGateMetricsData.Migrations
 
                     b.Property<string>("AusweisId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FahrerAusweisId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Fahrgestellnummer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FahrzeugFahrgestellnummer")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
@@ -67,9 +59,9 @@ namespace CGateMetricsData.Migrations
 
                     b.HasKey("BuchungsId");
 
-                    b.HasIndex("FahrerAusweisId");
+                    b.HasIndex("AusweisId");
 
-                    b.HasIndex("FahrzeugFahrgestellnummer");
+                    b.HasIndex("Fahrgestellnummer");
 
                     b.ToTable("Buchungen");
                 });
@@ -143,13 +135,13 @@ namespace CGateMetricsData.Migrations
                 {
                     b.HasOne("CGateMetricsData.Models.Fahrer", "Fahrer")
                         .WithMany()
-                        .HasForeignKey("FahrerAusweisId")
+                        .HasForeignKey("AusweisId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CGateMetricsData.Models.Fahrzeug", "Fahrzeug")
                         .WithMany()
-                        .HasForeignKey("FahrzeugFahrgestellnummer")
+                        .HasForeignKey("Fahrgestellnummer")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
