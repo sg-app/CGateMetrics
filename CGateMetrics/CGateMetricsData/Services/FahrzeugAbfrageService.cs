@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CGateMetricsData.Services
 {
-    public class FahrzeugAbfrageService : IFahrzeugAbfrageService
+    public partial class FahrzeugAbfrageService : IFahrzeugAbfrageService
     {
         CGateMetricsDbContext _context;
         public FahrzeugAbfrageService(CGateMetricsDbContext context) { 
@@ -35,14 +35,6 @@ namespace CGateMetricsData.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<Fahrer>> GetDriversWithIncompleteData()
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<List<Fahrzeug>> GetOverloadedLKWs()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
