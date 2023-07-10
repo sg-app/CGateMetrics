@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CGateMetricsData.Interfaces;
+using CGateMetricsData.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,7 +20,11 @@ namespace CGateMetricsData
                 options.UseSqlServer(configuration.GetConnectionString("default"));
             });
 
+            services.AddTransient<IFahrzeugAbfrageService, FahrzeugAbfrageService>();
+
             return services;
         }
+
+
     }
 }

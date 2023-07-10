@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CGateMetricsData.Interfaces;
+using CGateMetricsData.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,41 @@ using System.Threading.Tasks;
 
 namespace CGateMetricsData.Services
 {
-    public class FahrzeugAbfrageService
+    public class FahrzeugAbfrageService : IFahrzeugAbfrageService
     {
+        CGateMetricsDbContext _context;
+        public FahrzeugAbfrageService(CGateMetricsDbContext context) { 
+            _context = context;        
+        }
+
+        public Task<List<Buchung>> GetBuchungByDriverId(string ausweisnummer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Fahrzeug>> GetCurrentLKWSOnLocation(string location)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> GetDriverCountByLocationAlltime(string location)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> GetDriverCountByLocationWithTimeFilter(string location, DateTime startTimeFilter, DateTime endTimeFilter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Fahrer>> GetDriversWithIncompleteData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Fahrzeug>> GetOverloadedLKWs()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

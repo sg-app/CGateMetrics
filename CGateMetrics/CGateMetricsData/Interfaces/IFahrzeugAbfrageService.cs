@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CGateMetricsData.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,12 @@ namespace CGateMetricsData.Interfaces
 {
     public interface IFahrzeugAbfrageService
     {
+        Task<List<Buchung>> GetBuchungByDriverId(string ausweisnummer);
+        Task<int> GetDriverCountByLocationWithTimeFilter(string location, DateTime startTimeFilter, DateTime endTimeFilter);
+        Task<int> GetDriverCountByLocationAlltime(string location);
+        Task<List<Fahrzeug>> GetOverloadedLKWs();
+        Task<List<Fahrzeug>> GetCurrentLKWSOnLocation(string location);
+        Task<List<Fahrer>> GetDriversWithIncompleteData();
+
     }
 }
