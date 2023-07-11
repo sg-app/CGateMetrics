@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Radzen.Blazor" Version="4.13.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CGateMetricsData\CGateMetricsData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\" />
   </ItemGroup>
 
 </Project>

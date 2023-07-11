@@ -1,0 +1,19 @@
+﻿@page "/Fahrer"
+<h3>Fahrer</h3>
+
+
+<RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+    Data="@_fahrer" TItem="CGateMetricsData.Models.Fahrer" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="AusweisId" Title="AusweisId" Frozen="true" Width="160px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Vorname" Title="Vorname" Width="160px"/>
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Nachname" Title="Nachname" Width="200px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Geburtsort" Title="Geburtsort" Width="120px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Geburtstag" Title="Geburtstag" Width="160px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Anrede" Title="Anrede" Width="160px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Telefon" Title="Telefon" Width="200px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Firma" Title="Firma" Width="160px" />
+
+
+    </Columns>
+</RadzenDataGrid>

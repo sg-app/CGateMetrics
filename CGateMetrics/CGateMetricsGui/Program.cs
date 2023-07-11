@@ -1,16 +1,17 @@
 using CGateMetricsData;
-using CGateMetricsGui.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
-
 builder.Services.AddData(builder.Configuration);
+builder.Services.AddScoped<DialogService>();
+
+
 
 var app = builder.Build();
 
