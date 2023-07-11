@@ -62,7 +62,7 @@ namespace CGateMetricsTests.ControllerTests
         {
             // Arrange
             var expected = 5;
-            _abfrageMock.Setup(f => f.GetDriverCountByLocationWithinTimeFrame(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>())).ReturnsAsync(expected);
+            _abfrageMock.Setup(f => f.GetDriverCountByLocationWithinTimeFrame(It.IsAny<string>(), It.IsAny<DateTime?>(), It.IsAny<DateTime?>())).ReturnsAsync(expected);
             var request = new HttpRequestMessage(HttpMethod.Get, $"api/FahrzeugAbfrage/CountBetween/Regensburg");
 
             // Act
@@ -71,7 +71,7 @@ namespace CGateMetricsTests.ControllerTests
             var actual = JsonConvert.DeserializeObject<int>(responseContent);
 
             // Assert
-            _abfrageMock.Verify(f => f.GetDriverCountByLocationWithinTimeFrame(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Once);
+            _abfrageMock.Verify(f => f.GetDriverCountByLocationWithinTimeFrame(It.IsAny<string>(), It.IsAny<DateTime?>(), It.IsAny<DateTime?>()), Times.Once);
             actual.Should().Be(expected);
         }
 
