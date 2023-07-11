@@ -17,10 +17,10 @@ namespace CGateMetricsTests
 
 
 
-        [TestCase("Wolfsburg", ("01/21/2004"), ("01/23/2004"))]
-        [TestCase("Salzgitter", null, null)]
-        [TestCase("Zwickau", ("01/20/2012"), null)]
-        public async Task GetDriverCountByLocationWithTimeFilter(string location, DateTime? startTimeFilter, DateTime? endTimeFilter)
+        [TestCase("Wolfsburg", ("01/21/2004"), ("01/23/2004"), 2)]
+        [TestCase("Salzgitter", null, null, 2)]
+        [TestCase("Zwickau", ("01/20/2012"), null, 1)]
+        public async Task GetDriverCountByLocationWithTimeFilter(string location, DateTime? startTimeFilter, DateTime? endTimeFilter, int result)
         {
             //Arrange
 
@@ -49,18 +49,56 @@ namespace CGateMetricsTests
                 Standort = "Wolfsburg",
                 GewichtOut = 15,
                 Gefahrgut = "Benzin",
-            }
+            },
+
+                new Buchung
+                {
+                AusweisId = "123",
+                BuchungsId = 123,
+                UhrzeitIn = new DateTime(2028,01,22),
+                UhrzeitOut = new DateTime(2028,01,22),
+                Fahrgestellnummer = "XYZ",
+                Standort = "Salzgitter",
+                GewichtOut = 15,
+                Gefahrgut = "Benzin",
+            },
+
+                new Buchung
+                {
+                AusweisId = "123",
+                BuchungsId = 123,
+                UhrzeitIn = new DateTime(2028,01,20),
+                UhrzeitOut = new DateTime(2028,01,22),
+                Fahrgestellnummer = "XYZ",
+                Standort = "Salzgitter",
+                GewichtOut = 15,
+                Gefahrgut = "Benzin",
+            },
+
+                new Buchung
+                {
+                AusweisId = "123",
+                BuchungsId = 123,
+                UhrzeitIn = new DateTime(2012,01,20),
+                UhrzeitOut = new DateTime(2012,01,20),
+                Fahrgestellnummer = "XYZ",
+                Standort = "Zwickau",
+                GewichtOut = 15,
+                Gefahrgut = "Benzin",
+            },
 
             };
 
             buchungContextMock.Setup(x => x.Buchungen).ReturnsDbSet(buchungen);
             var sut = new FahrzeugAbfrageService(buchungContextMock.Object);
 
+
             //Act
             var actuell = await sut.GetDriverCountByLocationWithinTimeFrame(location, startTimeFilter, endTimeFilter);
 
+
             //Assert
-            actuell.Should().Be(2);
+            actuell.Should().Be(result);
 
         }
 
