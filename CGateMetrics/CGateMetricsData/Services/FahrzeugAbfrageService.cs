@@ -12,7 +12,7 @@ namespace CGateMetricsData.Services
     {
         CGateMetricsDbContext _context;
         public FahrzeugAbfrageService(CGateMetricsDbContext context) { 
-            _context = context;        
+            _context = context;      
         }
 
         public Task<List<Buchung>> GetBuchungByDriverId(string ausweisnummer)
@@ -21,16 +21,6 @@ namespace CGateMetricsData.Services
         }
 
         public Task<List<Fahrzeug>> GetCurrentLKWSOnLocation(string location)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> GetDriverCountByLocationAlltime(string location)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> GetDriverCountByLocationWithTimeFilter(string location, DateTime startTimeFilter, DateTime endTimeFilter)
         {
             throw new NotImplementedException();
         }

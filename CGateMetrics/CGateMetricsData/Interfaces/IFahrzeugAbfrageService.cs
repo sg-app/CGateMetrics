@@ -10,8 +10,7 @@ namespace CGateMetricsData.Interfaces
     public interface IFahrzeugAbfrageService
     {
         Task<List<Buchung>> GetBuchungByDriverId(string ausweisnummer);
-        Task<int> GetDriverCountByLocationWithTimeFilter(string location, DateTime startTimeFilter, DateTime endTimeFilter);
-        Task<int> GetDriverCountByLocationAlltime(string location);
+        Task<int> GetDriverCountByLocationWithinTimeFrame(string location, DateTime? startTimeFilter, DateTime? endTimeFilter); 
         Task<List<Fahrzeug>> GetOverloadedLKWs();
         Task<List<Fahrzeug>> GetCurrentLKWSOnLocation(string location);
         Task<List<Fahrer>> GetDriversWithIncompleteData();
