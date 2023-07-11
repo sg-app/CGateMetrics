@@ -16,7 +16,7 @@ namespace CGateMetricsData.Services
         public async Task<List<Fahrzeug>> GetOverloadedLKWs()
         {
             List<Buchung> buchungen = await _context.Buchungen.Include(i => i.Fahrzeug).ToListAsync();
-            return buchungen.Where(b => b.GewichtIn < b.Fahrzeug.ZulGesamtGewicht).Select(b => b.Fahrzeug).ToList();
+            return buchungen.Where(b => b.GewichtIn > b.Fahrzeug.ZulGesamtGewicht).Select(b => b.Fahrzeug).ToList();
         }
     }
 }
