@@ -25,14 +25,6 @@ namespace CGateMetricsData.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<Fahrer>> GetDriversWithIncompleteData()
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<List<Fahrzeug>> GetOverloadedLKWs()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
