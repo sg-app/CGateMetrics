@@ -1,6 +1,6 @@
 namespace CGateMetricsTests
 {
-    public class Tests
+    public partial class Tests
     {
         [SetUp]
         public void Setup()
