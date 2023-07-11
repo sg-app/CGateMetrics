@@ -1,8 +1,10 @@
 ﻿@page "/Fahrer"
 <h3>Fahrer</h3>
 
+@inject DialogService DialogService
 
-<RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+
+<RadzenDataGrid @ref="_fahrerGrid" AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
     Data="@_fahrer" TItem="CGateMetricsData.Models.Fahrer" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
     <Columns>
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="AusweisId" Title="AusweisId" Frozen="true" Width="160px" />
@@ -14,6 +16,22 @@
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Telefon" Title="Telefon" Width="200px" />
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Firma" Title="Firma" Width="160px" />
 
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Width="160px" Filterable="false" Sortable="false">
+          <Template Context="item">
+            <RadzenButton Click=@(args => EditButton(@item)) Text="Edit" ButtonStyle="ButtonStyle.Warning" />
+          </Template>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Width="160px" Filterable="false" Sortable="false">
+            <Template Context="item">
+                <RadzenButton Click=@(args => DeleteButton(@item)) Text="Delete" ButtonStyle="ButtonStyle.Danger" />
+            </Template>
+        </RadzenDataGridColumn>
 
     </Columns>
 </RadzenDataGrid>
+
+
+
+
+
