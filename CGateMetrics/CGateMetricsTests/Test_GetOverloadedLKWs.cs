@@ -51,7 +51,7 @@ namespace CGateMetricsTests
             var result = await sut.GetOverloadedLKWs();
 
             //Assert
-            result.Should().BeNull();
+            result.Should().BeEmpty();
         }
 
 
