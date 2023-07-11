@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CGateMetricsData.Services
 {
@@ -13,22 +14,13 @@ namespace CGateMetricsData.Services
         public async Task<List<Buchung>> GetBuchungByDriverId(string ausweisnummer)
         {
 
-
-            var buchung =  _context.Buchungen.FirstOrDefault(d => d.AusweisId == ausweisnummer);
-
-
-            var buchungslist = new List<Buchung>
-            {
-                buchung
-            };
-
-            return buchungslist;
+            return  await _context.Buchungen.Where(d => d.AusweisId == ausweisnummer).ToListAsync(); 
 
 
 
         }
 
-    }
+    } 
 
 
 

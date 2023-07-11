@@ -14,15 +14,12 @@ namespace CGateMetricsData
         public virtual DbSet<Fahrzeug> Fahrzeuge { get; set; }
         public virtual DbSet<Buchung> Buchungen { get; set; }
 
-        public CGateMetricsDbContext()
-        {
-            
-        }
-
         public CGateMetricsDbContext(DbContextOptions<CGateMetricsDbContext> options) : base (options)
         {
             
         }
+
+        public CGateMetricsDbContext() { }
 
     }
 }

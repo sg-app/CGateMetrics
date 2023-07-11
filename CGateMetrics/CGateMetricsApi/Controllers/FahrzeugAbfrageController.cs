@@ -41,13 +41,13 @@ namespace CGateMetricsApi.Controllers
         /// Get count of drivers between two timestamps
         /// </summary>
         /// <param name="location">Location</param>
-        /// <param name="start">Starttime</param>
-        /// <param name="end">Endtime</param>
+        /// <param name="start">Starttime as ISO-8601 format which is yyyy-MM-dd'T'HH:mm:ssZ or yyyy-MM-dd HH:mm:ss</param>
+        /// <param name="end">Endtime as ISO-8601 format which is yyyy-MM-dd'T'HH:mm:ssZ or yyyy-MM-dd HH:mm:ss</param>
         /// <returns>Count of drivers</returns>
         [HttpGet("CountBetween/{location}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<int>> GetDriverCountByLocationWithTimeFilter(string location, [FromQuery] DateTime start, DateTime end)
+        public async Task<ActionResult<int>> GetDriverCountByLocationWithTimeFilter(string location, [FromQuery] DateTime? start, DateTime? end)
         {
             try
             {
