@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CGateMetricsData.Services
-{
+{   
     public partial class FahrzeugAbfrageService : IFahrzeugAbfrageService
     {
         public async Task<List<Fahrer>> GetDriversWithIncompleteData()

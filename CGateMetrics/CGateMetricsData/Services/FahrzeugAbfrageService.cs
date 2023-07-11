@@ -15,16 +15,5 @@ namespace CGateMetricsData.Services
             _context = context;      
         }
 
-        public Task<List<Buchung>> GetBuchungByDriverId(string ausweisnummer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Fahrzeug>> GetCurrentLKWSOnLocation(string location)
-        {
-            throw new NotImplementedException();
-        }
-
-
     }
 }
