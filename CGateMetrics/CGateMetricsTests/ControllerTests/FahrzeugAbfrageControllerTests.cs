@@ -62,7 +62,7 @@ namespace CGateMetricsTests.ControllerTests
         {
             // Arrange
             var expected = 5;
-            _abfrageMock.Setup(f => f.GetDriverCountByLocationWithTimeFilter(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>())).ReturnsAsync(expected);
+            _abfrageMock.Setup(f => f.GetDriverCountByLocationWithinTimeFrame(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>())).ReturnsAsync(expected);
             var request = new HttpRequestMessage(HttpMethod.Get, $"api/FahrzeugAbfrage/CountBetween/Regensburg");
 
             // Act
@@ -71,27 +71,27 @@ namespace CGateMetricsTests.ControllerTests
             var actual = JsonConvert.DeserializeObject<int>(responseContent);
 
             // Assert
-            _abfrageMock.Verify(f => f.GetDriverCountByLocationWithTimeFilter(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Once);
+            _abfrageMock.Verify(f => f.GetDriverCountByLocationWithinTimeFrame(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<DateTime>()), Times.Once);
             actual.Should().Be(expected);
         }
 
-        [Test]
-        public async Task ShouldReturnCountOfDrivers()
-        {
-            // Arrange
-            var expected = 8;
-            _abfrageMock.Setup(f => f.GetDriverCountByLocationAlltime(It.IsAny<string>())).ReturnsAsync(expected);
-            var request = new HttpRequestMessage(HttpMethod.Get, $"api/FahrzeugAbfrage/Count/Regensburg");
+        //[Test]
+        //public async Task ShouldReturnCountOfDrivers()
+        //{
+        //    // Arrange
+        //    var expected = 8;
+        //    _abfrageMock.Setup(f => f.GetDriverCountByLocationAlltime(It.IsAny<string>())).ReturnsAsync(expected);
+        //    var request = new HttpRequestMessage(HttpMethod.Get, $"api/FahrzeugAbfrage/Count/Regensburg");
 
-            // Act
-            HttpResponseMessage response = await HttpClient.SendAsync(request);
-            string responseContent = await response.Content.ReadAsStringAsync();
-            var actual = JsonConvert.DeserializeObject<int>(responseContent);
+        //    // Act
+        //    HttpResponseMessage response = await HttpClient.SendAsync(request);
+        //    string responseContent = await response.Content.ReadAsStringAsync();
+        //    var actual = JsonConvert.DeserializeObject<int>(responseContent);
 
-            // Assert
-            _abfrageMock.Verify(f => f.GetDriverCountByLocationAlltime(It.IsAny<string>()), Times.Once);
-            actual.Should().Be(expected);
-        }
+        //    // Assert
+        //    _abfrageMock.Verify(f => f.GetDriverCountByLocationAlltime(It.IsAny<string>()), Times.Once);
+        //    actual.Should().Be(expected);
+        //}
 
         [Test]
         public async Task ShouldReturnOverloadedLkws()

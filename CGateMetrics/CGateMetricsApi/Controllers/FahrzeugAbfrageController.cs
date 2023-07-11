@@ -51,7 +51,7 @@ namespace CGateMetricsApi.Controllers
         {
             try
             {
-                var count = await _abfrageService.GetDriverCountByLocationWithTimeFilter(location, start, end);
+                var count = await _abfrageService.GetDriverCountByLocationWithinTimeFrame(location, start, end);
                 return Ok(count);
             }
             catch (Exception ex)
@@ -61,27 +61,27 @@ namespace CGateMetricsApi.Controllers
 
         }
 
-        /// <summary>
-        /// Get count of drivers for location
-        /// </summary>
-        /// <param name="location">Location</param>
-        /// <returns>Count of drivers</returns>
-        [HttpGet("Count/{location}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<int>> GetDriverCountByLocationAlltime(string location)
-        {
-            try
-            {
-                var count = await _abfrageService.GetDriverCountByLocationAlltime(location);
-                return Ok(count);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Could not load Data. " + ex.Message);
-            }
+        ///// <summary>
+        ///// Get count of drivers for location
+        ///// </summary>
+        ///// <param name="location">Location</param>
+        ///// <returns>Count of drivers</returns>
+        //[HttpGet("Count/{location}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public async Task<ActionResult<int>> GetDriverCountByLocationAlltime(string location)
+        //{
+        //    try
+        //    {
+        //        var count = await _abfrageService.GetDriverCountByLocationAlltime(location);
+        //        return Ok(count);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest("Could not load Data. " + ex.Message);
+        //    }
 
-        }
+        //}
 
         /// <summary>
         /// Get all vehicles where overloaded.
