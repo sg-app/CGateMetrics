@@ -47,7 +47,7 @@ namespace CGateMetricsApi.Controllers
         [HttpGet("CountBetween/{location}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<int>> GetDriverCountByLocationWithTimeFilter(string location, [FromQuery] DateTime start, DateTime end)
+        public async Task<ActionResult<int>> GetDriverCountByLocationWithTimeFilter(string location, [FromQuery] DateTime? start, DateTime? end)
         {
             try
             {
