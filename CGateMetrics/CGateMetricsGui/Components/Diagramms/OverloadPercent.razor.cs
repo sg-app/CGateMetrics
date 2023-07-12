@@ -15,39 +15,19 @@ namespace CGateMetricsGui.Components.Diagramms
 
         public List<Overload> revenue { get; set; } = new List<Overload>();
 
-        public List<Overload> revenue2018 { get; set; } = new List<Overload>();
-        public List<Overload> revenue2019 { get; set; } = new List<Overload>();
-        public List<Overload> revenue2020 { get; set; } = new List<Overload>();
+        public List<Overload> revenue1 { get; set; } = new List<Overload>();
+        public List<Overload> revenue2 { get; set; } = new List<Overload>();
+        public List<Overload> revenue3 { get; set; } = new List<Overload>();
 
 
         [Inject]
         public CGateMetricsDbContext _context { get; set; }
 
-
-
         protected async override Task OnInitializedAsync()
         {
-            //FahrzeugNormalLoad = await _context.Buchungen.Where(b => b.GewichtIn <= b.Fahrzeug.ZulGesamtGewicht && b.UhrzeitIn >= new DateTime(2018,01,01) && b.UhrzeitIn <= new DateTime(2019,12,31)).Include(i => i.Fahrzeug).CountAsync();
-            //FahrzeugOverload = await _context.Buchungen.Where(b => b.GewichtIn > b.Fahrzeug.ZulGesamtGewicht && b.UhrzeitIn >= new DateTime(2018, 01, 01) && b.UhrzeitIn <= new DateTime(2019, 12, 31)).Include(i => i.Fahrzeug).CountAsync();
-
-
-
-
-            //revenue.Add(new Overload
-            //{
-            //    Load = "normal",
-            //    Revenue = FahrzeugNormalLoad
-            //});
-            //revenue.Add(new Overload
-            //{
-            //    Load = "überladen",
-            //    Revenue = FahrzeugOverload
-            //});
-
-
-            revenue2018 = await OverloadData(2018);
-            revenue2019 = await OverloadData(2019);
-            revenue2020 = await OverloadData(2020);
+            revenue1 = await OverloadData(2018);
+            revenue2 = await OverloadData(2019);
+            revenue3 = await OverloadData(2020);
         }
 
 
