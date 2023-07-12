@@ -1,0 +1,80 @@
+﻿<h3>BuchungenCreateAndEdit</h3>
+
+@code {
+
+}
+
+<div class="container-fluid">
+    <div class="row px-3">
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Ankunft</RadzenText>
+                <RadzenDatePicker @bind-Value="Buchung.UhrzeitIn" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Abfahrt</RadzenText>
+                <RadzenDatePicker @bind-Value="Buchung.UhrzeitOut" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">AusweisId</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Buchung.AusweisId" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">FahrgestellId</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Buchung.Fahrgestellnummer" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Standort</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Buchung.Standort" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Gewicht Ankunft</RadzenText>
+                <RadzenNumeric class="w-100" @bind-Value="Buchung.GewichtIn" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Gewicht Abfahrt</RadzenText>
+                <RadzenNumeric class="w-100" @bind-Value="Buchung.GewichtOut" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Gefahrgut</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Buchung.Gefahrgut" />
+            </RadzenCard>
+        </div>
+
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Daten absenden</RadzenText>
+                <RadzenButton Click="@SubmitButtonPressed" Text="Daten absenden" ButtonStyle="ButtonStyle.Primary" />
+            </RadzenCard>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
