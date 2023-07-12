@@ -35,6 +35,15 @@
             <CGateMetricsGui.Components.Diagramms2.BookingsOnLocation Data="@_bookingCountOfLocationList" />
         </RadzenCard>
     </div>
+
+    <div class="row pt-2">
+        <RadzenCard>
+            <RadzenRow JustifyContent="JustifyContent.Center">
+                <RadzenText TextStyle="TextStyle.H3">Overload LKWs</RadzenText>
+            </RadzenRow>
+            <CGateMetricsGui.Components.Diagramms.OverloadPercent />
+        </RadzenCard>
+    </div>
 </div>
 
 @code {

@@ -10,6 +10,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddData(builder.Configuration);
 builder.Services.AddScoped<DialogService>();
+builder.Services.AddScoped<TooltipService>();
 
 
 

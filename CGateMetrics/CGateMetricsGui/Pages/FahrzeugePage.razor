@@ -2,11 +2,27 @@
 <h3>FahrzeugePage</h3>
 
 
+@code
+{
+    void ShowTooltip(ElementReference elementReference, TooltipOptions options = null) => TooltipService.OpenOnTheTop(elementReference, "Hier können Sie die Fahrzuege einfügen!", options);
+
+}
+
+@inject TooltipService TooltipService
+
+
 @inject DialogService DialogService
+
+
+<RadzenStack AlignItems="AlignItems.Center" Class="rz-mx-auto rz-my-12">
+
+    <RadzenImage Path="https://upload.wikimedia.org/wikipedia/de/b/b8/Continental_AG_logo.svg" Style="width: 25rem;" />
+
+</RadzenStack>
 
 <RadzenRow class="rz-text-align-left rz-border-white" Gap="1rem">
     <RadzenColumn class="rz-background-color-white rz-color-on-info-lighter rz-p-5">
-        <RadzenButton Click="@CreateNewFahrzeug" Text="Create" ButtonStyle="ButtonStyle.Success" />
+        <RadzenButton Click="@CreateNewFahrzeug" Text="Create" ButtonStyle="ButtonStyle.Info" MouseEnter="@(args => ShowTooltip(args))"/>
     </RadzenColumn>
 </RadzenRow>
 
