@@ -14,22 +14,25 @@ namespace CGateMetricsGui.Components.Diagramms
 
         protected override async Task OnInitializedAsync()
         {
-           _data = await Context.Buchungen
-                .Where(f => f.UhrzeitIn.Date == new DateTime(1996, 12, 6))
-                //.Where(f => f.UhrzeitIn.Date > new DateTime(1996, 12, 6) && f.UhrzeitIn.Date < new DateTime(1997, 5, 6))
-                .Select(f =>  
-                    new WeightDataItem 
-                    { 
-                        Time = f.UhrzeitIn.TimeOfDay, 
-                        Datetime = f.UhrzeitIn,
-                        Weight = f.GewichtIn 
-                    })
-                .ToListAsync();
+            _data = await Context.Buchungen
+                 .Where(f => f.UhrzeitIn.Date == new DateTime(1996, 12, 6))
+                 //.Where(f => f.UhrzeitIn.Date > new DateTime(1996, 12, 6) && f.UhrzeitIn.Date < new DateTime(1997, 5, 6))
+                 .Select(f =>
+                     new WeightDataItem
+                     {
+                         Time = f.UhrzeitIn.TimeOfDay,
+                         Datetime = f.UhrzeitIn,
+                         Weight = f.GewichtIn
+                     })
+                 .ToListAsync();
 
         }
         string FormatAsWeight(object value)
         {
             return ((double)value).ToString("N0");
         }
+
+        
+   
     }
 }
