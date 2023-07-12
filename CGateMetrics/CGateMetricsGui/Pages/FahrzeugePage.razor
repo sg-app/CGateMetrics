@@ -4,6 +4,15 @@
 
 @inject DialogService DialogService
 
+<RadzenRow class="rz-text-align-left rz-border-white" Gap="1rem">
+    <RadzenColumn class="rz-background-color-white rz-color-on-info-lighter rz-p-5">
+        <RadzenButton Click="@CreateNewFahrzeug" Text="Create" ButtonStyle="ButtonStyle.Success" />
+    </RadzenColumn>
+</RadzenRow>
+
+
+
+
 <RadzenDataGrid @ref="_fahrzeugGrid" AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.SimpleWithMenu" AllowSorting="true" PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
                 Data="@_fahrzeug" TItem="CGateMetricsData.Models.Fahrzeug" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
     <Columns>
