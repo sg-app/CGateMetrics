@@ -1,0 +1,51 @@
+﻿<h3>FahrzeugePageCreatandEdit</h3>
+
+@code {
+
+}
+
+
+
+<div class="container-fluid">
+    <div class="row px-3">
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Fahrgestellnummer</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Fahrzeug.Fahrgestellnummer" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Hersteller</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Fahrzeug.Hersteller" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Kennzeichen</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Fahrzeug.Kennzeichen" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">ZugelassenesGesamtGewicht</RadzenText>
+                <RadzenNumeric class="w-100" @bind-Value="Fahrzeug.ZulGesamtGewicht" />
+            </RadzenCard>
+        </div>
+
+       
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Daten absenden</RadzenText>
+                <RadzenButton Click="@SubmitButtonPressed" Text="Absenden" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Click="@CloseTask" ButtonStyle="ButtonStyle.Light" Icon="cancel" Text="Stonieren" />
+            </RadzenCard>
+        </div>
+        
+                
+    </div>
+</div>

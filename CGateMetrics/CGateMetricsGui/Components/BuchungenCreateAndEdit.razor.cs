@@ -5,35 +5,34 @@ using Radzen;
 
 namespace CGateMetricsGui.Components
 {
-    public partial class FahrerCreateAndEdit
+    public partial class BuchungenCreateAndEdit
     {
 
         [Inject]
         public DialogService DialogService { get; set; }
 
-        public List<string> Anrede { get; set; }
-
-        public bool DisableAusweisId { get; set; }
 
         [Parameter]
-        public CGateMetricsData.Models.Fahrer Fahrer { get; set; }
+        public CGateMetricsData.Models.Buchung Buchung { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
-            Anrede = new List<String>() { "Herr", "Frau", "Divers" };
 
-            if(Fahrer.AusweisId != null)
-            {
-                DisableAusweisId = true;
-            }
         }
+
 
         public async Task SubmitButtonPressed()
         {
-            
+
             DialogService.Close(true);
+
         }
-   
+
+
+
+
+
+        
 
     }
 }
