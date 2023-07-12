@@ -50,25 +50,40 @@ namespace CGateMetricsGui.Pages
         protected async Task EditButton(CGateMetricsData.Models.Fahrer item)
         {
 
+            CGateMetricsData.Models.Fahrer _editFahrer = new CGateMetricsData.Models.Fahrer
+            {
+                Vorname = item.Vorname,
+                Nachname = item.Nachname,
+                Geburtsort = item.Geburtsort,
+                Geburtstag = item.Geburtstag,
+                Anrede = item.Anrede,
+                Telefon = item.Telefon,
+                Firma = item.Firma,
+                AusweisId = item.AusweisId
+
+            };
+
+
             bool? saveChanges = await DialogService.OpenAsync<FahrerCreateAndEdit>("Create and Edit",
-                       new Dictionary<string, object>() { { "Fahrer", item } },
+                       new Dictionary<string, object>() { { "Fahrer", _editFahrer } },
                        new DialogOptions() { Width = "700px", Height = "612px", Resizable = true, Draggable = true,  });
 
-            if(saveChanges != null )
+            if(saveChanges != null)
             {
+                
+
                 var fahrer = await _context.Fahrer.FindAsync(item.AusweisId);
-                fahrer.Vorname = item.Vorname;
-                fahrer.Nachname = item.Nachname;
-                fahrer.Geburtsort = item.Geburtsort;
-                fahrer.Geburtstag = item.Geburtstag;
-                fahrer.Anrede = item.Anrede;
-                fahrer.Telefon = item.Telefon;
-                fahrer.Firma = item.Firma;
+                fahrer.Vorname = _editFahrer.Vorname;
+                fahrer.Nachname = _editFahrer.Nachname;
+                fahrer.Geburtsort = _editFahrer.Geburtsort;
+                fahrer.Geburtstag = _editFahrer.Geburtstag;
+                fahrer.Anrede = _editFahrer.Anrede;
+                fahrer.Telefon = _editFahrer.Telefon;
+                fahrer.Firma = _editFahrer.Firma;
                 _context.Update(fahrer);
                 await _context.SaveChangesAsync();
             }
         }
-
 
 
 
@@ -84,10 +99,8 @@ namespace CGateMetricsGui.Pages
                 _context.Fahrer.Remove(fahrer);
                 await _context.SaveChangesAsync();
                 await _fahrerGrid.Reload(); 
-
             }
         }
-
     }
 }
 

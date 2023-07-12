@@ -30,6 +30,7 @@ namespace CGateMetricsGui.Components
 
         public async Task SubmitButtonPressed()
         {
+            
             DialogService.Close(true);
         }
    
