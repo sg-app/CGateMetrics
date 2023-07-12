@@ -1,0 +1,38 @@
+﻿@page "/Buchungen"
+<h3>Buchungen</h3>
+
+@inject DialogService DialogService
+
+
+<RadzenDataGrid @ref="_buchungenGrid" AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+    
+Data="@_buchungen" TItem="CGateMetricsData.Models.Buchung" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="BuchungsId" Title="BuchungsId" Frozen="true" Width="160px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="UhrzeitIn" Title="Uhrzeit Ankunft" Frozen="true" Width="220px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="UhrzeitOut" Title="Uhrzeit Abfahrt" Frozen="true" Width="220px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="AusweisId" Title="AusweisId" Width="150px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="Fahrgestellnummer" Title="Fahrgestellnummer" Width="200px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="Standort" Title="Standort" Width="150px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="GewichtIn" Title="Gewicht Ankunft" Width="60px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="GewichtOut" Title="Gewicht Abfahrt" Width="60px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="Gefahrgut" Title="Gefahrgut" Width="200px" />
+
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Width="160px" Filterable="false" Sortable="false">
+          <Template Context="item">
+            <RadzenButton Click=@(args => EditButton(@item)) Text="Edit" ButtonStyle="ButtonStyle.Warning" />
+          </Template>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Width="160px" Filterable="false" Sortable="false">
+            <Template Context="item">
+                <RadzenButton Click=@(args => DeleteButton(@item)) Text="Delete" ButtonStyle="ButtonStyle.Danger" />
+            </Template>
+        </RadzenDataGridColumn>
+
+    </Columns>
+</RadzenDataGrid>
+
+
+
+
