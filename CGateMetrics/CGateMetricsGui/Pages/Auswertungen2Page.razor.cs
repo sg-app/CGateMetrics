@@ -11,6 +11,7 @@ namespace CGateMetricsGui.Pages
 
         private List<CountLkwMonth> _countLkwMonthList = new();
         private List<WeightDataItem> _weightDataItemList = new();
+        private List<BookingCountOfLocation> _bookingCountOfLocationList = new();
         private DateTime _startTime;
         private DateTime _endTime;
 
@@ -46,6 +47,16 @@ namespace CGateMetricsGui.Pages
                          Weight = f.GewichtIn
                      })
                  .ToListAsync();
+
+            _bookingCountOfLocationList = await Context.Buchungen
+                .GroupBy(f => f.Standort)
+                .Select(f =>
+                    new BookingCountOfLocation
+                    {
+                        Location = f.Key,
+                        Count = f.Count()
+                    })
+                .ToListAsync();
         }
     }
 }
