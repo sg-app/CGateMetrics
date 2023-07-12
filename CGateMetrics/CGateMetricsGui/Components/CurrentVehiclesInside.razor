@@ -1,0 +1,34 @@
+﻿@using CGateMetricsGui.Models;
+
+@if (Data != null)
+{
+    @foreach (var item in Data)
+    {
+        <RadzenCard>
+            <RadzenRow>
+                <RadzenColumn>
+                    <RadzenText>@item.Kennzeichen</RadzenText>
+                </RadzenColumn>
+                <RadzenColumn>
+                    <RadzenText>@item.Fahrer</RadzenText>
+                </RadzenColumn>
+                <RadzenColumn>
+                    <RadzenText>@item.Firma</RadzenText>
+                </RadzenColumn>
+                <RadzenColumn>
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" Click="@(()=>BookingHandler(item))">Buchen</RadzenButton>
+                </RadzenColumn>
+            </RadzenRow>
+        </RadzenCard>
+    }
+}
+
+@code {
+    [Inject] public NavigationManager NavigationManager { get; set; }
+    [Parameter] public List<CurrentVehiclesIn> Data { get; set; }
+
+    private void BookingHandler(CurrentVehiclesIn item)
+    {
+        NavigationManager.NavigateTo($"/CreateBuchung/{item.BookingId}");
+    }
+}
