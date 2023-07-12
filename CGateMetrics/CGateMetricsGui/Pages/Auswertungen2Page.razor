@@ -11,23 +11,30 @@
             <RadzenButton Text="LadeDaten" Click="LoadData" />
         </div>
     </div>
-    <div class="row">
+    <div class="row pt-2">
         <RadzenCard>
-            <CGateMetricsGui.Components.Diagramms2.WeightSeries2 Data="@_weightDataItemList"/>
+            <RadzenRow JustifyContent="JustifyContent.Center">
+                <RadzenText TextStyle="TextStyle.H3">Gewichtsverlauf Einfahrende Lkws</RadzenText>
+            </RadzenRow>
+            <CGateMetricsGui.Components.Diagramms2.WeightSeries2 Data="@_weightDataItemList" />
         </RadzenCard>
     </div>
-    <div class="row">
+    <div class="row pt-2">
         <RadzenCard>
+            <RadzenRow JustifyContent="JustifyContent.Center">
+                <RadzenText TextStyle="TextStyle.H3">Anzahl Lkws pro Tag</RadzenText>
+            </RadzenRow>
             <CGateMetricsGui.Components.Diagramms2.CountLkw2 Data="@_countLkwMonthList" />
         </RadzenCard>
     </div>
-    <div class="row">
+    <div class="row pt-2">
         <RadzenCard>
-             <CGateMetricsGui.Components.Diagramms.OverloadPercent />
+            <RadzenRow JustifyContent="JustifyContent.Center">
+                <RadzenText TextStyle="TextStyle.H3">Anzahl Buchungen pro Standort</RadzenText>
+            </RadzenRow>
+            <CGateMetricsGui.Components.Diagramms2.BookingsOnLocation Data="@_bookingCountOfLocationList" />
         </RadzenCard>
     </div>
-
-
 </div>
 
 @code {
