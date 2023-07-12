@@ -14,8 +14,4 @@
     <ProjectReference Include="..\CGateMetricsData\CGateMetricsData.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Components\" />
-  </ItemGroup>
-
 </Project>

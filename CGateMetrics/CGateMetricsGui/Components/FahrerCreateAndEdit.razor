@@ -1,0 +1,78 @@
+﻿<h3>FahrerCreateAndEdit</h3>
+
+@code {
+
+}
+
+<div class="container-fluid">
+    <div class="row px-3">
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">AusweisId</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Fahrer.AusweisId" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Vorname</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Fahrer.Vorname" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Nachname</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Fahrer.Nachname" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Geburtsort</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Fahrer.Geburtsort" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Geburtstag</RadzenText>
+                    <RadzenDatePicker @bind-Value="Fahrer.Geburtstag" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Anrede</RadzenText>
+                <RadzenDropDown @bind-Value="@Fahrer.Anrede" Data="@Anrede" Style="width: 100%; max-width: 400px;" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Telefon</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Fahrer.Telefon" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Firma</RadzenText>
+                <RadzenTextBox class="w-100" @bind-Value="Fahrer.Firma" />
+            </RadzenCard>
+        </div>
+
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Daten absenden</RadzenText>
+                <RadzenButton Click="@SubmitButtonPressed" Text="Primary" ButtonStyle="ButtonStyle.Primary" />
+            </RadzenCard>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
