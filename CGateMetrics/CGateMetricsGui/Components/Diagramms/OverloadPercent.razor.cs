@@ -27,22 +27,22 @@ namespace CGateMetricsGui.Components.Diagramms
 
         protected async override Task OnInitializedAsync()
         {
-            FahrzeugNormalLoad = await _context.Buchungen.Where(b => b.GewichtIn <= b.Fahrzeug.ZulGesamtGewicht && b.UhrzeitIn >= new DateTime(2018,01,01) && b.UhrzeitIn <= new DateTime(2019,12,31)).Include(i => i.Fahrzeug).CountAsync();
-            FahrzeugOverload = await _context.Buchungen.Where(b => b.GewichtIn > b.Fahrzeug.ZulGesamtGewicht && b.UhrzeitIn >= new DateTime(2018, 01, 01) && b.UhrzeitIn <= new DateTime(2019, 12, 31)).Include(i => i.Fahrzeug).CountAsync();
+            //FahrzeugNormalLoad = await _context.Buchungen.Where(b => b.GewichtIn <= b.Fahrzeug.ZulGesamtGewicht && b.UhrzeitIn >= new DateTime(2018,01,01) && b.UhrzeitIn <= new DateTime(2019,12,31)).Include(i => i.Fahrzeug).CountAsync();
+            //FahrzeugOverload = await _context.Buchungen.Where(b => b.GewichtIn > b.Fahrzeug.ZulGesamtGewicht && b.UhrzeitIn >= new DateTime(2018, 01, 01) && b.UhrzeitIn <= new DateTime(2019, 12, 31)).Include(i => i.Fahrzeug).CountAsync();
 
 
 
 
-            revenue.Add(new Overload
-            {
-                Load = "normal",
-                Revenue = FahrzeugNormalLoad
-            });
-            revenue.Add(new Overload
-            {
-                Load = "überladen",
-                Revenue = FahrzeugOverload
-            });
+            //revenue.Add(new Overload
+            //{
+            //    Load = "normal",
+            //    Revenue = FahrzeugNormalLoad
+            //});
+            //revenue.Add(new Overload
+            //{
+            //    Load = "überladen",
+            //    Revenue = FahrzeugOverload
+            //});
 
 
             revenue2018 = await OverloadData(2018);
