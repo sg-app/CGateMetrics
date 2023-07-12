@@ -18,7 +18,7 @@ namespace CGateMetricsData
             services.AddDbContext<CGateMetricsDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("default"));
-            });
+            }, ServiceLifetime.Transient);
 
             services.AddTransient<IFahrzeugAbfrageService, FahrzeugAbfrageService>();
 

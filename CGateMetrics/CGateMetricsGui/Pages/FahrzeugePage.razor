@@ -1,0 +1,28 @@
+﻿@page "/Fahrzeuge"
+<h3>FahrzeugePage</h3>
+
+
+@inject DialogService DialogService
+
+<RadzenDataGrid @ref="_fahrzeugGrid" AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.SimpleWithMenu" AllowSorting="true" PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                Data="@_fahrzeug" TItem="CGateMetricsData.Models.Fahrzeug" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Property="Fahrgestellnummer" Title="Fahrgestellnummer" Frozen="true" Width="160px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Property="Hersteller" Title="Hersteller" Width="160px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Property="Kennzeichen" Title="Kennzeichen" Width="200px" />
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Property="ZulGesamtGewicht" Title="ZulGesamtGewicht" Width="120px" />
+    
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Width="160px" Filterable="false" Sortable="false">
+            <Template Context="item">
+                <RadzenButton Click=@(args => EditButton(@item)) Text="Edit" ButtonStyle="ButtonStyle.Warning" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Width="160px" Filterable="false" Sortable="false">
+            <Template Context="item">
+                <RadzenButton Click=@(args => DeleteButton(@item)) Text="Delete" ButtonStyle="ButtonStyle.Danger" />
+            </Template>
+        </RadzenDataGridColumn>
+
+    </Columns>
+</RadzenDataGrid>
