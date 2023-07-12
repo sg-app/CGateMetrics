@@ -23,13 +23,38 @@ namespace CGateMetricsGui.Pages
         }
 
 
+        protected async Task CreateNewFahrer()
+        {
+            CGateMetricsData.Models.Fahrer item = new();
+            bool? saveChanges = await DialogService.OpenAsync<FahrerCreateAndEdit>("Create and Edit",
+                       new Dictionary<string, object>() { { "Fahrer", item } },
+                       new DialogOptions() { Width = "700px", Height = "612px", Resizable = true, Draggable = true, });
+
+            if (saveChanges != null)
+            {
+                CGateMetricsData.Models.Fahrer fahrer = new CGateMetricsData.Models.Fahrer();
+                fahrer.AusweisId = item.AusweisId;
+                fahrer.Vorname = item.Vorname;
+                fahrer.Nachname = item.Nachname;
+                fahrer.Geburtsort = item.Geburtsort;
+                fahrer.Geburtstag = item.Geburtstag;
+                fahrer.Anrede = item.Anrede;
+                fahrer.Telefon = item.Telefon;
+                fahrer.Firma = item.Firma;
+                _context.Add(fahrer);
+                _fahrer.Add(fahrer);
+                await _context.SaveChangesAsync();
+            }
+        }
+
         protected async Task EditButton(CGateMetricsData.Models.Fahrer item)
         {
-            bool saveChanges = await DialogService.OpenAsync<FahrerCreateAndEdit>("Create and Edit",
-                       new Dictionary<string, object>() { { "Fahrer", item } },
-                       new DialogOptions() { Width = "700px", Height = "512px", Resizable = true, Draggable = true });
 
-            if(saveChanges)
+            bool? saveChanges = await DialogService.OpenAsync<FahrerCreateAndEdit>("Create and Edit",
+                       new Dictionary<string, object>() { { "Fahrer", item } },
+                       new DialogOptions() { Width = "700px", Height = "612px", Resizable = true, Draggable = true,  });
+
+            if(saveChanges != null )
             {
                 var fahrer = await _context.Fahrer.FindAsync(item.AusweisId);
                 fahrer.Vorname = item.Vorname;
@@ -43,6 +68,7 @@ namespace CGateMetricsGui.Pages
                 await _context.SaveChangesAsync();
             }
         }
+
 
 
 
