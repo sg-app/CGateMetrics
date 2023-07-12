@@ -1,0 +1,28 @@
+﻿@page "/Auswertung2"
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <RadzenDatePicker @bind-Value="_startTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
+        </div>
+        <div class="col-3">
+            <RadzenDatePicker @bind-Value="_endTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
+        </div>
+        <div class="col-3">
+            <RadzenButton Text="LadeDaten" Click="LoadData" />
+        </div>
+    </div>
+    <div class="row">
+        <RadzenCard>
+            <CGateMetricsGui.Components.Diagramms2.WeightSeries2 Data="@_weightDataItemList"/>
+        </RadzenCard>
+    </div>
+    <div class="row">
+        <RadzenCard>
+            <CGateMetricsGui.Components.Diagramms2.CountLkw2 Data="@_countLkwMonthList" />
+        </RadzenCard>
+    </div>
+</div>
+
+@code {
+
+}

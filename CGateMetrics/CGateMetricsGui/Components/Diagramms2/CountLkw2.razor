@@ -1,0 +1,12 @@
+﻿@using CGateMetricsGui.Models;
+
+<RadzenChart>
+    <RadzenColumnSeries Data="@Data" CategoryProperty="Date" Title="Anzahl Lkws" LineType="LineType.Dashed" ValueProperty="Count">
+        <RadzenSeriesDataLabels Visible="true" />
+    </RadzenColumnSeries>
+    <RadzenColumnOptions Radius="2" Width="20" />
+</RadzenChart>
+
+@code {
+    [Parameter] public List<CountLkwMonth> Data { get; set; }
+}

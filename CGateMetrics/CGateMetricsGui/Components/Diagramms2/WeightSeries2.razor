@@ -1,0 +1,11 @@
+﻿@using CGateMetricsGui.Models;
+<RadzenChart>
+    <RadzenLineSeries Data="@Data" CategoryProperty="Time" Title="Gewicht" LineType="LineType.Dashed" ValueProperty="Weight">
+        <RadzenMarkers MarkerType="MarkerType.Square" />
+        <RadzenSeriesDataLabels Visible="true" />
+    </RadzenLineSeries>
+</RadzenChart>
+
+@code {
+    [Parameter] public List<WeightDataItem> Data { get; set; }
+}
