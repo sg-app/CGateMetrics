@@ -1,0 +1,43 @@
+﻿@page "/overloadpercent"
+
+
+
+
+
+<RadzenRow class="rz-text-align-center rz-border-white" Gap="1rem">
+    <RadzenColumn Size="12">
+        <RadzenCard>
+            <RadzenCheckBox @bind-Value="@showDataLabels" Name="dataLabels"></RadzenCheckBox>
+            <RadzenLabel Text="Show Data Labels" For="dataLabels" Style="margin-left: 8px; vertical-align: middle;" />
+        </RadzenCard>
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow class="rz-text-align-center rz-border-white" Gap="1rem">
+    <RadzenColumn Size="4" class="rz-background-color-info-lighter rz-color-black rz-p-5">
+        <RadzenChart>
+          2018
+            <RadzenPieSeries Data="@revenue2018" Title="LKWs" CategoryProperty="Load" ValueProperty="Revenue">
+                <RadzenSeriesDataLabels Visible="@showDataLabels" />
+            </RadzenPieSeries>
+        </RadzenChart>
+    </RadzenColumn>
+
+
+    <RadzenColumn Size="4" class="rz-background-color-danger-lighter rz-color-black rz-p-5">
+        <RadzenChart>
+          2019
+            <RadzenPieSeries Data="@revenue2019" Title="LKWs" CategoryProperty="Load" ValueProperty="Revenue">
+                <RadzenSeriesDataLabels Visible="@showDataLabels" />
+            </RadzenPieSeries>
+        </RadzenChart>
+    </RadzenColumn>
+
+    <RadzenColumn Size="4" class="rz-background-color-success-lighter rz-color-black rz-p-5">
+        <RadzenChart>
+          2020
+            <RadzenPieSeries Data="@revenue2020" Title="LKWs" CategoryProperty="Load" ValueProperty="Revenue">
+                <RadzenSeriesDataLabels Visible="@showDataLabels" />
+            </RadzenPieSeries>
+        </RadzenChart>
+    </RadzenColumn>
+</RadzenRow>
