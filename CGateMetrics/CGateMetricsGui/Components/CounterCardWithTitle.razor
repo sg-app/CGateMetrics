@@ -1,0 +1,12 @@
+﻿<RadzenCard Style="max-width: 200px">
+    <RadzenRow JustifyContent="JustifyContent.Center">
+        <RadzenText TextStyle="TextStyle.Body1">@Title</RadzenText>
+    </RadzenRow>
+    <RadzenRow JustifyContent="JustifyContent.Center">
+        <RadzenText TextStyle="TextStyle.DisplayH1">@Count</RadzenText>
+    </RadzenRow>
+</RadzenCard>
+@code {
+    [Parameter] public string Title { get; set; }
+    [Parameter] public int Count { get; set; }
+}

@@ -1,0 +1,21 @@
+﻿@page "/home"
+
+<h3>Landing Page</h3>
+<RadzenRow JustifyContent="JustifyContent.Center">
+    <RadzenDropDown TValue="string" Data="@_locations" Value="@_currentLocation" Change="@(args => LocationChangedHandler(args))" />
+</RadzenRow>
+
+<div class="row pt-3">
+    <div class="col-2">
+        <RadzenButton Click="NewBookingHandler">Neue Buchung</RadzenButton>
+    </div>
+</div>
+
+<div class="row pt-3">
+    <div class="col-2">
+        <CGateMetricsGui.Components.CounterCardWithTitle Count="@_currentIn" Title="Im Werk" />
+    </div>
+    <div class="col-10">
+        <CGateMetricsGui.Components.CurrentVehiclesInside Data="@_currentVehiclesIn" />
+    </div>
+</div>
