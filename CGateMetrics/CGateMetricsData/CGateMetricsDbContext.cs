@@ -13,6 +13,7 @@ namespace CGateMetricsData
         public virtual DbSet<Fahrer> Fahrer { get; set; }
         public virtual DbSet<Fahrzeug> Fahrzeuge { get; set; }
         public virtual DbSet<Buchung> Buchungen { get; set; }
+        public virtual DbSet<Standort> Standort { get; set; }
 
         public virtual DbSet<Standort> Standort { get; set; }
 

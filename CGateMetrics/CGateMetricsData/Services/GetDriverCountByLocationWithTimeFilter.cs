@@ -26,16 +26,16 @@ namespace CGateMetricsData.Services
                 throw new ArgumentNullException($"{nameof(GetDriverCountByLocationWithinTimeFrame)}");
 
             if (startTimeFilter == null && endTimeFilter != null)
-                anzahlFahrer = _context.Buchungen.Count(x => x.Standort == location && x.UhrzeitOut <= endTimeFilter);
+                anzahlFahrer = _context.Buchungen.Count(x => x.Standort.Standortname == location && x.UhrzeitOut <= endTimeFilter);
 
             if (startTimeFilter != null && endTimeFilter == null)
-                anzahlFahrer = _context.Buchungen.Count(x => x.Standort == location && x.UhrzeitIn >= startTimeFilter);
+                anzahlFahrer = _context.Buchungen.Count(x => x.Standort.Standortname == location && x.UhrzeitIn >= startTimeFilter);
 
             if (startTimeFilter != null && endTimeFilter != null)
-                anzahlFahrer = _context.Buchungen.Count(x => x.Standort == location && x.UhrzeitIn >= startTimeFilter && x.UhrzeitOut <= endTimeFilter);
+                anzahlFahrer = _context.Buchungen.Count(x => x.Standort.Standortname == location && x.UhrzeitIn >= startTimeFilter && x.UhrzeitOut <= endTimeFilter);
 
             if (startTimeFilter == null && endTimeFilter == null)
-                anzahlFahrer = _context.Buchungen.Count(x => x.Standort == location);
+                anzahlFahrer = _context.Buchungen.Count(x => x.Standort.Standortname == location);
 
             return anzahlFahrer;
 
