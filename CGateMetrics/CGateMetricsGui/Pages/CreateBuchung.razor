@@ -40,10 +40,10 @@ else{
 
         <RadzenRow AlignItems="AlignItems.Center">
             <RadzenColumn Size="12" SizeMD="4">
-                <RadzenLabel Text="Standort" />
+                <RadzenLabel Text="StandortId" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenTextBox class="w-100" @bind-Value="buchung.Standort" />
+                <RadzenDropDown @bind-Value="@buchung.StandortId" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@StandortIdList" AllowClear=true Placeholder="Select StandortId" Style="width: 100%; max-width: 400px;" />
             </RadzenColumn>
         </RadzenRow>
 
