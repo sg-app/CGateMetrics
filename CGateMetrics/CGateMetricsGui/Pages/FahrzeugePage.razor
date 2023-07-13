@@ -5,7 +5,6 @@
 
 <PageTitle>Fahrzeuge</PageTitle>
 
-<p>&#128512;</p>
 
 @code
 {
@@ -19,11 +18,22 @@
 @inject DialogService DialogService
 
 
+
 <RadzenStack AlignItems="AlignItems.Center" Class="rz-mx-auto rz-my-12">
 
     <RadzenImage Path="https://upload.wikimedia.org/wikipedia/de/b/b8/Continental_AG_logo.svg" Style="width: 25rem;" />
 
 </RadzenStack>
+
+<div class="rz-p-10 rz-text-align-left">
+    <RadzenLink Icon="home" Path="https://localhost:7213/" Text="Go to HomePage" />
+  
+</div>
+<div class="rz-p-10 rz-text-align-left">
+
+    <RadzenLink Icon="analytics" Path="https://localhost:7213/Auswertung2" Text="Go to Auswertungen" />
+</div>
+
 
 <RadzenRow class="rz-text-align-left rz-border-white" Gap="1rem">
     <RadzenColumn class="rz-background-color-white rz-color-on-info-lighter rz-p-5">
