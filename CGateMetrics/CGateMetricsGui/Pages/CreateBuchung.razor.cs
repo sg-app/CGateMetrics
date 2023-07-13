@@ -63,7 +63,7 @@ namespace CGateMetricsGui.Pages
         public async Task CreateButtonPressed()
         {
             await _context.Buchungen.AddAsync(buchung);
-            buchung.Standort = _context.Standort.Where(y => y.Id == buchung.StandortId).Select(x => x.Standortname).First();
+            buchung.StandortId = _context.Standort.Where(y => y.Id == buchung.StandortId).Select(x => x.Id).First();
             await _context.SaveChangesAsync();
             Navi.NavigateTo("/Buchungen");
         }
