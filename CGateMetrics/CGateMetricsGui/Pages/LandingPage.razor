@@ -1,21 +1,30 @@
 ﻿@page "/home"
 
-<h3>Landing Page</h3>
-<RadzenRow JustifyContent="JustifyContent.Center">
-    <RadzenDropDown TValue="string" Data="@_locations" Value="@_currentLocation" Change="@(args => LocationChangedHandler(args))" />
-</RadzenRow>
+<RadzenText TextStyle="TextStyle.H5">Landing Page</RadzenText>
 
-<div class="row pt-3">
-    <div class="col-2">
-        <RadzenButton Click="NewBookingHandler">Neue Buchung</RadzenButton>
-    </div>
-</div>
+@if (_isBusy)
+{
+    <RadzenText TextStyle="TextStyle.H6">Daten werden geladen.</RadzenText>
+    <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+}
+else
+{
+    <RadzenRow JustifyContent="JustifyContent.Center">
+        <RadzenDropDown TValue="string" Data="@_locations" Value="@_currentLocation" Change="@(args => LocationChangedHandler(args))" />
+    </RadzenRow>
 
-<div class="row pt-3">
-    <div class="col-2">
-        <CGateMetricsGui.Components.CounterCardWithTitle Count="@_currentIn" Title="Im Werk" />
+    <div class="row pt-3">
+        <div class="col-2">
+            <RadzenButton Click="NewBookingHandler" Icon="add"> Neue Buchung</RadzenButton>
+        </div>
     </div>
-    <div class="col-10">
-        <CGateMetricsGui.Components.CurrentVehiclesInside Data="@_currentVehiclesIn" />
+
+    <div class="row pt-3">
+        <div class="col-2">
+            <CGateMetricsGui.Components.CounterCardWithTitle Count="@_currentIn" Title="Im Werk" />
+        </div>
+        <div class="col-10">
+            <CGateMetricsGui.Components.CurrentVehiclesInside Data="@_currentVehiclesIn" />
+        </div>
     </div>
-</div>
+}

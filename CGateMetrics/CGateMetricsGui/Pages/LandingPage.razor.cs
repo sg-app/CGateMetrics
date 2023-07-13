@@ -14,27 +14,39 @@ namespace CGateMetricsGui.Pages
         
         private int _currentIn;
         private List<string> _locations;
+        private bool _isBusy = false;
 
         private string _currentLocation;
 
         private List<CurrentVehiclesIn> _currentVehiclesIn;
 
-        protected override async Task OnInitializedAsync()
+        protected override Task OnInitializedAsync()
         {
-            _locations = await Context.Buchungen
-                .GroupBy(f=>f.Standort)
-                .Select(f=>f.Key)
-                .OrderBy(f=>f)
-                .ToListAsync();
-
-            if (_locations.Count > 0)
-            {
-                await LocationChangedHandler(_locations[0]);
-            }
+            _isBusy = true;
+            return base.OnInitializedAsync();
         }
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if(firstRender)
+            {
+                _locations = await Context.Buchungen
+                    .GroupBy(f => f.Standort)
+                    .Select(f => f.Key)
+                    .OrderBy(f => f)
+                    .ToListAsync();
+
+                if (_locations.Count > 0)
+                {
+                    await LocationChangedHandler(_locations[0]);
+                }
+                _isBusy = false;
+                await InvokeAsync(StateHasChanged);
+            }
+        }
         private async Task LoadData()
         {
+            _isBusy = true;
             _currentIn = await Context.Buchungen
                 .Where(f => f.Standort == _currentLocation && f.UhrzeitOut == null)
                 .CountAsync();
@@ -50,6 +62,7 @@ namespace CGateMetricsGui.Pages
                     Firma = s.Fahrer.Firma
                 })
                 .ToListAsync();
+            _isBusy = false;
         }
 
         private async Task LocationChangedHandler(object location)
