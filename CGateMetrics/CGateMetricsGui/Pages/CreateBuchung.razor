@@ -1,4 +1,6 @@
-﻿@page "/CreateBuchung/{id:int}"
+﻿@using CGateMetricsData.Models;
+
+@page "/CreateBuchung/{id:int}"
 @page "/CreateBuchung"
 
 @if(Id == 0)
@@ -11,6 +13,7 @@ else{
 <h3>Edit Buchung</h3>
 }
 
+<RadzenTemplateForm TItem="Buchung" Data=@buchung Submit=@SubmitButtonPressed>
 <RadzenFieldset Text="Buchung">
     <RadzenStack Gap="1rem">
         <RadzenRow AlignItems="AlignItems.Center">
@@ -34,7 +37,8 @@ else{
                 <RadzenLabel Text="Ausweis Id" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenDropDown @bind-Value="@buchung.AusweisId" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@AusweisIdList" AllowClear=true Placeholder="Select AusweisId" Style="width: 100%; max-width: 400px;" />
+                <RadzenDropDown @bind-Value="@buchung.AusweisId" Name="AusweisId" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@AusweisIdList" AllowClear=true Placeholder="Select AusweisId" Style="width: 100%; max-width: 400px;" />
+                    <RadzenRequiredValidator Text="Name is required" Component="AusweisId" Popup=true/>
             </RadzenColumn>
         </RadzenRow>
 
@@ -87,7 +91,7 @@ else{
         <div class="col-md-6 col-lg-4 p-3">
             <RadzenCard>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Daten absenden</RadzenText>
-                <RadzenButton Click="@SubmitButtonPressed" Text="Daten absenden" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Text="Daten absenden" ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Primary" />
             </RadzenCard>
             </div>
 
@@ -97,9 +101,10 @@ else{
             <div class="col-md-6 col-lg-4 p-3">
                 <RadzenCard>
                     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Create</RadzenText>
-                    <RadzenButton Click="@CreateButtonPressed" Text="Create" ButtonStyle="ButtonStyle.Primary" />
+                        <RadzenButton Text="Create" ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Primary" />
                 </RadzenCard>
             </div>
         }
     </RadzenStack>
 </RadzenFieldset>
+</RadzenTemplateForm>

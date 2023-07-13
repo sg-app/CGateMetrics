@@ -59,21 +59,22 @@ namespace CGateMetricsGui.Pages
         public async Task SubmitButtonPressed()
         {
 
-            _context.Update(buchung);
-            await _context.SaveChangesAsync();
-            //Navi.NavigateTo("/Buchungen");
-            await PageHistory.Back();
+            if (Id!=0)
+            {
+                _context.Update(buchung);
+                await _context.SaveChangesAsync();
+                //Navi.NavigateTo("/Buchungen");
+                await PageHistory.Back(); 
+            }
+            else
+            {
+                await _context.Buchungen.AddAsync(buchung);
+                buchung.StandortId = _context.Standort.Where(y => y.Id == buchung.StandortId).Select(x => x.Id).First();
+                await _context.SaveChangesAsync();
+                //Navi.NavigateTo("/Buchungen");
+                await PageHistory.Back();
+            }
         }
-
-        public async Task CreateButtonPressed()
-        {
-            await _context.Buchungen.AddAsync(buchung);
-            buchung.StandortId = _context.Standort.Where(y => y.Id == buchung.StandortId).Select(x => x.Id).First();
-            await _context.SaveChangesAsync();
-            //Navi.NavigateTo("/Buchungen");
-            await PageHistory.Back();
-        }
-
     }
 }
 
