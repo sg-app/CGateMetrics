@@ -22,7 +22,7 @@ namespace CGateMetricsGui.Pages
 
         Buchung buchung = new() {
             UhrzeitIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0),
-            UhrzeitOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0),
+            UhrzeitOut = null,
             AusweisId = "",
             Fahrgestellnummer = "",
             Standort = "",
@@ -54,25 +54,9 @@ namespace CGateMetricsGui.Pages
         {
             await _context.Buchungen.AddAsync(buchung);
             await _context.SaveChangesAsync();
+            Navi.NavigateTo("/Buchungen");
         }
 
-        //protected async Task CreateBuchung(CGateMetricsData.Models.Buchung item)
-        //{
-        //        var buchungToAdd = new Buchung()
-        //        {
-        //            UhrzeitIn = item.UhrzeitIn,
-        //            UhrzeitOut = item.UhrzeitOut,
-        //            AusweisId = item.AusweisId,
-        //            Fahrgestellnummer = item.Fahrgestellnummer,
-        //            Standort = item.Standort,
-        //            GewichtIn = item.GewichtIn,
-        //            GewichtOut = item.GewichtOut,
-        //            Gefahrgut = item.Gefahrgut
-        //        };
-
-        //        await _context.AddAsync(buchungToAdd);
-        //        await _context.SaveChangesAsync();
-        //}
     }
 }
 
