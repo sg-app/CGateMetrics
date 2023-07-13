@@ -20,6 +20,9 @@ namespace CGateMetricsGui.Pages
         [Parameter]
         public int Id { get; set; } = 0;
 
+        public List<string> AusweisIdList { get; set; }
+        public List<string> FahrgestellnummerList { get; set; }
+
         Buchung buchung = new() {
             UhrzeitIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0),
             UhrzeitOut = null,
@@ -39,6 +42,9 @@ namespace CGateMetricsGui.Pages
             {
                 buchung = await _context.Buchungen.FindAsync(Id);
             }
+
+            AusweisIdList = await _context.Fahrer.Select(x => x.AusweisId).ToListAsync();
+            FahrgestellnummerList = await _context.Fahrzeuge.Select(x => x.Fahrgestellnummer).ToListAsync();
         }
 
         public async Task SubmitButtonPressed()

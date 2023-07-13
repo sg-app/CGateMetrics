@@ -34,9 +34,10 @@ else{
                 <RadzenLabel Text="Ausweis Id" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenTextBox class="w-100" @bind-Value="buchung.AusweisId" />
+                <RadzenDropDown @bind-Value="@buchung.AusweisId" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@AusweisIdList" AllowClear=true Placeholder="Select AusweisId" Style="width: 100%; max-width: 400px;" />
             </RadzenColumn>
         </RadzenRow>
+
         <RadzenRow AlignItems="AlignItems.Center">
             <RadzenColumn Size="12" SizeMD="4">
                 <RadzenLabel Text="Standort" />
@@ -51,7 +52,7 @@ else{
                 <RadzenLabel Text="Fahrgestellnummer" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenTextBox class="w-100" @bind-Value="buchung.Fahrgestellnummer" />
+                <RadzenDropDown @bind-Value="@buchung.Fahrgestellnummer" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@FahrgestellnummerList" AllowClear=true Placeholder="Select Fahrgestellnummer" Style="width: 100%; max-width: 400px;" />
             </RadzenColumn>
         </RadzenRow>
 
