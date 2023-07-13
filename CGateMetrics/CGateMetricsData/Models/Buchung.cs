@@ -18,7 +18,7 @@ namespace CGateMetricsData.Models
         public string AusweisId { get; set; }
         [ForeignKey(nameof(Fahrzeug))]
         public string Fahrgestellnummer { get; set; }
-        public string Standort { get; set; }
+        //public string Standort { get; set; }
         public int GewichtIn { get; set; }
         public int? GewichtOut { get; set; }
         public string? Gefahrgut { get; set; }
@@ -27,6 +27,6 @@ namespace CGateMetricsData.Models
 
         public Fahrer Fahrer { get; set; }
         public Fahrzeug Fahrzeug { get; set; }
-        public Standort Location { get; set; }
+        public Standort Standort { get; set; }
     }
 }

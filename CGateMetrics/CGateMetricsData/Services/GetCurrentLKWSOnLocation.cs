@@ -16,14 +16,11 @@ namespace CGateMetricsData.Services
 
         public async Task<List<Fahrzeug>> GetCurrentLKWSOnLocation(string location)
         {
-           var buchung =  _context.Buchungen.Where( i => i.Standort == location &&  i.UhrzeitOut == null).Include(f=> f.Fahrzeug);
-           
-         return  await buchung.Select(b => b.Fahrzeug).ToListAsync();
-
-         
+            var standort = await _context.Standort.FirstOrDefaultAsync(f => f.Standortname == location);
+            var buchung = _context.Buchungen.Where(i => i.StandortId == standort.Id && i.UhrzeitOut == null).Include(f => f.Fahrzeug);
+            return await buchung.Select(b => b.Fahrzeug).ToListAsync();
         }
 
 
     }
 }
- 
