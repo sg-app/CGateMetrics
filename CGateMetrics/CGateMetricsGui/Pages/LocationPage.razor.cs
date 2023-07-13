@@ -59,13 +59,17 @@ namespace CGateMetricsGui.Pages
 
         private async Task DeleteButton(Standort item)
         {
-            var toDelete = await Context.Standort.FindAsync(item.Id);
-            if(toDelete != null)
+            var result = await DialogService.Confirm("Soll Eintrag gelöscht werden?", "Löschen", new ConfirmOptions() { OkButtonText = "Ja", CancelButtonText = "Nein" });
+            if(result != null && result == true)
             {
-                Context.Standort.Remove(toDelete);
-                await Context.SaveChangesAsync();
-                _data.Remove(item);
-                await _grid.Reload();
+                var toDelete = await Context.Standort.FindAsync(item.Id);
+                if (toDelete != null)
+                {
+                    Context.Standort.Remove(toDelete);
+                    await Context.SaveChangesAsync();
+                    _data.Remove(item);
+                    await _grid.Reload();
+                }
             }
         }
 
