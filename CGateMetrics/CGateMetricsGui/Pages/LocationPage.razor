@@ -1,0 +1,34 @@
+﻿@page "/locations"
+@using CGateMetricsData.Models
+
+<RadzenText TextStyle="TextStyle.H3">Standorte</RadzenText>
+
+<RadzenButton ButtonStyle="ButtonStyle.Primary" Icon="add_circle_outline" class="mt-2 mb-4" Text="Neuen Standort" Click="@InsertButton" />
+<RadzenDataGrid @ref="_grid"
+                LoadData="@LoadData"
+                IsLoading="@_isLoading"
+                Count="@_count"
+                AllowFiltering="true"
+                AllowColumnResize="true"
+                AllowAlternatingRows="false"
+                FilterMode="FilterMode.SimpleWithMenu"
+                AllowSorting="true"
+                PageSize="15"
+                AllowPaging="true"
+                PagerHorizontalAlign="HorizontalAlign.Left"
+                ShowPagingSummary="true"
+                Data="@_data"
+                TItem="Standort"
+                LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn TItem="Standort" Property="Id" Title="Id" Width="60px" />
+        <RadzenDataGridColumn TItem="Standort" Property="Standortname" Title="Name" Width="160px" />
+
+        <RadzenDataGridColumn TItem="Standort" Width="100px" Filterable="false" Sortable="false">
+            <Template Context="item">
+                <RadzenButton Click=@(args => EditButton(@item)) Text="Edit" ButtonStyle="ButtonStyle.Warning" />
+                <RadzenButton Click=@(args => DeleteButton(@item)) Text="Delete" ButtonStyle="ButtonStyle.Danger" />
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
