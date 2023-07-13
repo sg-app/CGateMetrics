@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 using Radzen;
 using Radzen.Blazor;
+using System.Linq.Dynamic.Core;
 
 namespace CGateMetricsGui.Pages
 {
@@ -20,12 +21,17 @@ namespace CGateMetricsGui.Pages
         [Parameter]
         public int Id { get; set; } = 0;
 
+        public List<string> AusweisIdList { get; set; }
+        public List<string> FahrgestellnummerList { get; set; }
+
+        public List<int> StandortIdList { get; set; }
+
         Buchung buchung = new() {
             UhrzeitIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0),
-            UhrzeitOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0),
+            UhrzeitOut = null,
             AusweisId = "",
             Fahrgestellnummer = "",
-            Standort = "",
+            StandortId = 0,
             GewichtIn = 0,
             GewichtOut = 0,
             Gefahrgut = ""
@@ -39,6 +45,10 @@ namespace CGateMetricsGui.Pages
             {
                 buchung = await _context.Buchungen.FindAsync(Id);
             }
+
+            AusweisIdList = await _context.Fahrer.Select(x => x.AusweisId).ToListAsync();
+            FahrgestellnummerList = await _context.Fahrzeuge.Select(x => x.Fahrgestellnummer).ToListAsync();
+            StandortIdList = await _context.Standort.Select(x => x.Id).ToListAsync();
         }
 
         public async Task SubmitButtonPressed()
@@ -53,26 +63,11 @@ namespace CGateMetricsGui.Pages
         public async Task CreateButtonPressed()
         {
             await _context.Buchungen.AddAsync(buchung);
+            buchung.StandortId = _context.Standort.Where(y => y.Id == buchung.StandortId).Select(x => x.Id).First();
             await _context.SaveChangesAsync();
+            Navi.NavigateTo("/Buchungen");
         }
 
-        //protected async Task CreateBuchung(CGateMetricsData.Models.Buchung item)
-        //{
-        //        var buchungToAdd = new Buchung()
-        //        {
-        //            UhrzeitIn = item.UhrzeitIn,
-        //            UhrzeitOut = item.UhrzeitOut,
-        //            AusweisId = item.AusweisId,
-        //            Fahrgestellnummer = item.Fahrgestellnummer,
-        //            Standort = item.Standort,
-        //            GewichtIn = item.GewichtIn,
-        //            GewichtOut = item.GewichtOut,
-        //            Gefahrgut = item.Gefahrgut
-        //        };
-
-        //        await _context.AddAsync(buchungToAdd);
-        //        await _context.SaveChangesAsync();
-        //}
     }
 }
 

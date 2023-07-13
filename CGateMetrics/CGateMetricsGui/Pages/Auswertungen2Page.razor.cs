@@ -53,7 +53,7 @@ namespace CGateMetricsGui.Pages
                 .Select(f =>
                     new BookingCountOfLocation
                     {
-                        Location = f.Key,
+                        Location = f.Key.Standortname,
                         Count = f.Count()
                     })
                 .ToListAsync();

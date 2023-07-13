@@ -18,7 +18,7 @@ else{
                 <RadzenLabel Text="Zeit Ankunft" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenDatePicker @bind-Value="buchung.UhrzeitIn" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" />
+                <RadzenDatePicker @bind-Value="buchung.UhrzeitIn"/>
             </RadzenColumn>
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center">
@@ -26,7 +26,7 @@ else{
                 <RadzenLabel Text="Zeit Abfahrt" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenDatePicker @bind-Value="buchung.UhrzeitOut" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" />
+                <RadzenDatePicker @bind-Value="buchung.UhrzeitOut"/>
             </RadzenColumn>
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center">
@@ -34,15 +34,16 @@ else{
                 <RadzenLabel Text="Ausweis Id" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenTextBox class="w-100" @bind-Value="buchung.AusweisId" />
+                <RadzenDropDown @bind-Value="@buchung.AusweisId" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@AusweisIdList" AllowClear=true Placeholder="Select AusweisId" Style="width: 100%; max-width: 400px;" />
             </RadzenColumn>
         </RadzenRow>
+
         <RadzenRow AlignItems="AlignItems.Center">
             <RadzenColumn Size="12" SizeMD="4">
-                <RadzenLabel Text="Standort" />
+                <RadzenLabel Text="StandortId" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenTextBox class="w-100" @bind-Value="buchung.Standort" />
+                <RadzenDropDown @bind-Value="@buchung.StandortId" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@StandortIdList" AllowClear=true Placeholder="Select StandortId" Style="width: 100%; max-width: 400px;" />
             </RadzenColumn>
         </RadzenRow>
 
@@ -51,7 +52,7 @@ else{
                 <RadzenLabel Text="Fahrgestellnummer" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenTextBox class="w-100" @bind-Value="buchung.Fahrgestellnummer" />
+                <RadzenDropDown @bind-Value="@buchung.Fahrgestellnummer" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@FahrgestellnummerList" AllowClear=true Placeholder="Select Fahrgestellnummer" Style="width: 100%; max-width: 400px;" />
             </RadzenColumn>
         </RadzenRow>
 

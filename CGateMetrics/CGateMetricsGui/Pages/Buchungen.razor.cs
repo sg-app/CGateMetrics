@@ -16,6 +16,8 @@ namespace CGateMetricsGui.Pages
         [Inject] 
         public CGateMetricsDbContext _context { get; set; }
 
+        public Uri inputUri { get; set; }
+
         [Inject]
         public NavigationManager Navi { get; set; }
 
@@ -25,29 +27,6 @@ namespace CGateMetricsGui.Pages
         {
              _buchungen = await _context.Buchungen.ToListAsync();
         }
-
-
-        //protected async Task EditButton(CGateMetricsData.Models.Buchung item)
-        //{
-        //    bool saveChanges = await DialogService.OpenAsync<BuchungenCreateAndEdit>("Create and Edit",
-        //               new Dictionary<string, object>() { { "Buchung", item } },
-        //               new DialogOptions() { Width = "700px", Height = "512px", Resizable = true, Draggable = true });
-
-        //    if(saveChanges)
-        //    {
-        //        var buchung = await _context.Buchungen.FindAsync(item.BuchungsId);
-        //        buchung.UhrzeitIn = item.UhrzeitIn;
-        //        buchung.UhrzeitOut = item.UhrzeitOut;
-        //        buchung.AusweisId = item.AusweisId;
-        //        buchung.Fahrgestellnummer = item.Fahrgestellnummer;
-        //        buchung.Standort = item.Standort;
-        //        buchung.GewichtIn = item.GewichtIn;
-        //        buchung.GewichtOut = item.GewichtOut;
-        //        buchung.Gefahrgut = item.Gefahrgut;
-        //        _context.Update(buchung);
-        //        await _context.SaveChangesAsync();
-        //    }
-        //}
 
         protected async Task EditButton(CGateMetricsData.Models.Buchung item)
         {

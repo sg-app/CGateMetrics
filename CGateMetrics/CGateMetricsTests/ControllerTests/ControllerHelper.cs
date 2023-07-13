@@ -21,7 +21,7 @@ namespace CGateMetricsTests.ControllerTests
             {
                 inDiff = new Random().Next((int)TimeSpan.FromDays(500).TotalMinutes);
                 outDiff = new Random().Next(inDiff);
-                inWeight = new Random().Next(5,42);
+                inWeight = new Random().Next(5, 42);
                 outWeight = new Random().Next(5, inWeight);
 
                 buchung = new Buchung
@@ -31,7 +31,7 @@ namespace CGateMetricsTests.ControllerTests
                     UhrzeitOut = DateTime.Now.AddMinutes(-outDiff),
                     AusweisId = $"AID{i}",
                     Fahrgestellnummer = $"WIOALPOG{i}S2390SF",
-                    Standort = "Regensburg",
+                    Standort = new() { Id = 1, Standortname = "Regensburg" },
                     GewichtIn = inWeight,
                     GewichtOut = outWeight,
                 };
@@ -75,7 +75,7 @@ namespace CGateMetricsTests.ControllerTests
                     AusweisId = $"AID{i}",
                     Vorname = $"Vorname{i}",
                     Nachname = $"Nachname{i}",
-                    
+
                 };
                 list.Add(fahrer);
             }
