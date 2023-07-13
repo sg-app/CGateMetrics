@@ -3,9 +3,14 @@ using CGateMetricsGui.Interfaces;
 using CGateMetricsGui.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using NLog.Extensions.Logging;
 using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Logging.ClearProviders();
+builder.Logging.AddNLog(Path.Combine("Config","NLog.config"));
 
 // Add services to the container.
 builder.Services.AddRazorPages();

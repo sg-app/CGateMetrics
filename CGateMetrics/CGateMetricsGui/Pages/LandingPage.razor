@@ -1,4 +1,5 @@
 ﻿@page "/home"
+@using CGateMetricsData.Models;
 
 <RadzenText TextStyle="TextStyle.H5">Landing Page</RadzenText>
 
@@ -10,7 +11,7 @@
 else
 {
     <RadzenRow JustifyContent="JustifyContent.Center">
-        <RadzenDropDown TValue="string" Data="@_locations" Value="@_currentLocation" Change="@(args => LocationChangedHandler(args))" />
+        <RadzenDropDown TValue="Standort" Data="@_locations" TextProperty="Standortname" ValueProperty="Id" Value="@_currentLocationId" Change="@(args => LocationChangedHandler(args))" />
     </RadzenRow>
 
     <div class="row pt-3">
