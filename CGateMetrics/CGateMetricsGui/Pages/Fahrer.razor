@@ -82,13 +82,6 @@
 
 
 
-
-
-
-
-
-
-
         <RadzenButton ButtonStyle="ButtonStyle.Success" Icon="add_circle_outline" class="mt-2 mb-4" Text="Add New Fahrer" Click="@InsertRow" Disabled=@(fahrerToInsert != null || fahrerToUpdate != null) />
         <RadzenDataGrid @ref="_fahrerGrid" AllowAlternatingRows="false" AllowFiltering="true" AllowPaging="true" PageSize="10" AllowSorting="true" EditMode="DataGridEditMode.Single"
                         Data="@_fahrer" TItem="CGateMetricsData.Models.Fahrer" RowUpdate="@OnUpdateRow" RowCreate="@OnCreateRow" Sort="@Reset" Page="@Reset" Filter="@Reset" ColumnWidth="200px">
@@ -97,18 +90,21 @@
 
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="AusweisId" Title="AusweisId" Frozen="true" Width="160px">
                       <EditTemplate Context="fahrer">
-                <RadzenTextBox @bind-Value="fahrer.AusweisId" Disabled="@DisableAusweisId" Style="width:100%; display: block" />
+                <RadzenTextBox @bind-Value="fahrer.AusweisId" Disabled="@DisableAusweisId" Style="width:100%; display: block" Name="AusweisId"/>
+                <RadzenCustomValidator Value=@fahrer.AusweisId Component="AusweisId" Text="AusweisId nicht eindeutig" Validator="@(() => ValidateNewId(fahrer.AusweisId))" Style="position: absolute" />
             </EditTemplate>
         </RadzenDataGridColumn>
 
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Vorname" Title="Vorname" Width="160px">
             <EditTemplate Context="fahrer">
-                <RadzenTextBox @bind-Value="fahrer.Vorname" Style="width:100%; display: block" />
+                <RadzenTextBox @bind-Value="fahrer.Vorname" Style="width:100%; display: block" Name="Vorname" />
+                <RadzenRequiredValidator Text="Vorname angeben" Component="Vorname" Popup="true" />
             </EditTemplate>
         </RadzenDataGridColumn>
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Nachname" Title="Nachname" Width="160px">
             <EditTemplate Context="fahrer">
-                <RadzenTextBox @bind-Value="fahrer.Nachname" Style="width:100%; display: block" />
+                <RadzenTextBox @bind-Value="fahrer.Nachname" Style="width:100%; display: block" Name="Nachname" />
+                <RadzenRequiredValidator Text="Nachname angeben" Component="Nachname" Popup="true" />
             </EditTemplate>
         </RadzenDataGridColumn>
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Geburtsort" Title="Geburtsort" Width="160px">
@@ -137,8 +133,8 @@
 
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Firma" Title="Firma" Width="160px">
             <EditTemplate Context="fahrer">
-                <RadzenTextBox @bind-Value="fahrer.Firma" Style="width:100%; display: block" />
-                <ValidationMessage For="@(() => fahrer.Firma)" />
+                <RadzenTextBox @bind-Value="fahrer.Firma" Style="width:100%; display: block" Name="Firma" />
+                <RadzenRequiredValidator Text="Firma angeben" Component="Firma" Popup="true" />
             </EditTemplate>
         </RadzenDataGridColumn>
 

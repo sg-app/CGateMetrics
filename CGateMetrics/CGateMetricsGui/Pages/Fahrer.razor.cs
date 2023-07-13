@@ -30,11 +30,28 @@ namespace CGateMetricsGui.Pages
         bool DisableUpdateGrid { get; set; }
 
 
-             
+        string checkUniqueId { get; set; }
+
+
         protected async override Task OnInitializedAsync()
         {
              _fahrer = await _context.Fahrer.ToListAsync();
             Anrede = new List<String>() { "Herr", "Frau", "Divers" };
+        }
+
+        bool ValidateNewId(string id)
+        {
+
+            var checkUniqueId = _fahrer.Where(f => f.AusweisId == id).Count();
+            if(checkUniqueId == 0)
+            { 
+                return true; 
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
 
@@ -85,7 +102,7 @@ namespace CGateMetricsGui.Pages
 
         //    if(saveChanges != null)
         //    {
-                
+
 
         //        var fahrer = await _context.Fahrer.FindAsync(item.AusweisId);
         //        fahrer.Vorname = _editFahrer.Vorname;
