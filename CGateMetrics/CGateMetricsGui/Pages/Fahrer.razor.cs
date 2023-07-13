@@ -12,9 +12,9 @@ namespace CGateMetricsGui.Pages
 
         private RadzenDataGrid<CGateMetricsData.Models.Fahrer> _fahrerGrid;
 
-        [Inject] 
+        [Inject]
         public CGateMetricsDbContext _context { get; set; }
-        
+
         List<CGateMetricsData.Models.Fahrer> _fahrer = new();
 
         public bool IsLoading { get; set; }
@@ -29,6 +29,8 @@ namespace CGateMetricsGui.Pages
 
         bool DisableUpdateGrid { get; set; }
 
+
+             
         protected async override Task OnInitializedAsync()
         {
              _fahrer = await _context.Fahrer.ToListAsync();
@@ -217,7 +219,6 @@ namespace CGateMetricsGui.Pages
             DisableAusweisId = false;
             fahrerToInsert = new CGateMetricsData.Models.Fahrer();
             await _fahrerGrid.InsertRow(fahrerToInsert);
-
 
         }
 
