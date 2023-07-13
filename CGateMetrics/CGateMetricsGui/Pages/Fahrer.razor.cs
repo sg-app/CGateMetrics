@@ -134,7 +134,7 @@ namespace CGateMetricsGui.Pages
             await _fahrerGrid.EditRow(fahrer);
         }
 
-        void OnUpdateRow(CGateMetricsData.Models.Fahrer fahrer)
+        private async Task OnUpdateRow(CGateMetricsData.Models.Fahrer fahrer)
         {
             if (fahrer == fahrerToInsert)
             {
@@ -144,10 +144,7 @@ namespace CGateMetricsGui.Pages
             fahrerToUpdate = null;
 
             _context.Update(fahrer);
-
-            _context.SaveChanges();
-
-            _fahrerGrid.Reload();
+            await _context.SaveChangesAsync();
 
         }
 
@@ -155,7 +152,7 @@ namespace CGateMetricsGui.Pages
         {
 
               await _fahrerGrid.UpdateRow(fahrer);
-              await _fahrerGrid.Reload();
+              //await _fahrerGrid.Reload();
         }
 
         void CancelEdit(CGateMetricsData.Models.Fahrer fahrer)
@@ -204,7 +201,7 @@ namespace CGateMetricsGui.Pages
 
                     _fahrer.Remove(fahrer);
                 }
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 await _fahrerGrid.Reload();
             }
@@ -227,20 +224,28 @@ namespace CGateMetricsGui.Pages
         
         async Task OnCreateRow(CGateMetricsData.Models.Fahrer fahrer)
         {
-            int createFahrer = _context.Fahrer.Where(f => f.AusweisId == fahrer.AusweisId).Count();
-                
-            if (createFahrer == 0)
-            {
-                _context.Add(fahrer);
-                _context.SaveChanges();
-                _fahrer.Add(fahrer);
-                fahrerToInsert = fahrer;
-            }
-            else
-            {
-                fahrerToInsert = null;
-            }
+            //int createFahrer = _context.Fahrer.Where(f => f.AusweisId == fahrer.AusweisId).Count();
 
+            //if (createFahrer == 0)
+            //{
+            //    _context.Add(fahrer);
+            //    _context.SaveChanges();
+            //    _fahrer.Add(fahrer);
+            //    fahrerToInsert = fahrer;
+            //}
+            //else
+            //{
+            //    fahrerToInsert = null;
+            //}
+            //dbContext.Add(order);
+
+            //dbContext.SaveChanges();
+
+            //orderToInsert = null;
+
+            _context.Add(fahrer);
+            await _context.SaveChangesAsync();
+            fahrerToInsert = null;
 
 
         }
