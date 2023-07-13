@@ -1,0 +1,43 @@
+﻿@using CGateMetricsData.Models;
+
+<RadzenCard>
+    <RadzenTemplateForm TItem="Standort" Data=@_standort Submit=@SubmitButtonPressed>
+        <RadzenRow AlignItems="AlignItems.Center">
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenLabel Text="Standortname" />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="8">
+                <RadzenTextBox class="w-100" style="display: block" Name="Standortname" @bind-Value="_standort.Standortname" />
+                <RadzenLengthValidator Component="Standortname" Min="3" Max="50" Text="Muss zwischen 3 und 5 Zeichen sein." Style="position: absolute" />
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow class="mt-3">
+            <RadzenButton ButtonType="ButtonType.Submit" Text="@(Standort.Id == 0 ? "Erstellen" : "Ändern")" ButtonStyle="ButtonStyle.Primary" />
+            <RadzenButton Click="@CloseButtonPressed" Text="Schliesen" ButtonStyle="ButtonStyle.Secondary" />
+        </RadzenRow>
+    </RadzenTemplateForm>
+</RadzenCard>
+
+@code {
+    [Inject] public DialogService DialogService { get; set; }
+    [Parameter] public Standort Standort { get; set; }
+    private Standort _standort;
+
+    protected override Task OnParametersSetAsync()
+    {
+        _standort = new();
+        _standort.Standortname = Standort?.Standortname ?? String.Empty;
+        return base.OnParametersSetAsync();
+    }
+
+    private void SubmitButtonPressed()
+    {
+        Standort.Standortname = _standort.Standortname;
+        DialogService.Close(true);
+    }
+
+    private void CloseButtonPressed()
+    {
+        DialogService.Close(false);
+    }
+}
