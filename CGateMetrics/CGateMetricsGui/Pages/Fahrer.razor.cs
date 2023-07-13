@@ -12,9 +12,9 @@ namespace CGateMetricsGui.Pages
 
         private RadzenDataGrid<CGateMetricsData.Models.Fahrer> _fahrerGrid;
 
-        [Inject] 
+        [Inject]
         public CGateMetricsDbContext _context { get; set; }
-        
+
         List<CGateMetricsData.Models.Fahrer> _fahrer = new();
 
         public bool IsLoading { get; set; }
@@ -29,6 +29,8 @@ namespace CGateMetricsGui.Pages
 
         bool DisableUpdateGrid { get; set; }
 
+
+             
         protected async override Task OnInitializedAsync()
         {
              _fahrer = await _context.Fahrer.ToListAsync();
@@ -221,27 +223,15 @@ namespace CGateMetricsGui.Pages
             fahrerToInsert = new CGateMetricsData.Models.Fahrer();
             await _fahrerGrid.InsertRow(fahrerToInsert);
 
-
         }
 
         
         async Task OnCreateRow(CGateMetricsData.Models.Fahrer fahrer)
         {
-            int createFahrer = _context.Fahrer.Where(f => f.AusweisId == fahrer.AusweisId).Count();
-                
-            if (createFahrer == 0)
-            {
-                _context.Add(fahrer);
-                _context.SaveChanges();
-                _fahrer.Add(fahrer);
-                fahrerToInsert = fahrer;
-            }
-            else
-            {
-                fahrerToInsert = null;
-            }
 
-
+            _context.Add(fahrer);
+            _context.SaveChanges();
+            fahrerToInsert = null;
 
         }
 
