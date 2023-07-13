@@ -12,6 +12,9 @@ namespace CGateMetricsGui.Components
         [Inject]
         public DialogService DialogService { get; set; }
 
+        public TooltipService TooltipService { get; set; }
+
+
 
 
         [Parameter]
@@ -19,7 +22,7 @@ namespace CGateMetricsGui.Components
 
         protected async override Task OnInitializedAsync()
         {
-           
+          
         }
 
 
@@ -39,6 +42,8 @@ namespace CGateMetricsGui.Components
 
         }
 
+
+        
 
 
         

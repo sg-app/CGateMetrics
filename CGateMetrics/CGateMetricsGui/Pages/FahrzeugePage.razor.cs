@@ -26,6 +26,25 @@ namespace CGateMetricsGui.Pages
         }
 
 
+        protected async Task CreateNewFahrzeug()
+        {
+            CGateMetricsData.Models.Fahrzeug item = new();
+            bool? saveChanges = await DialogService.OpenAsync<FahrzeugePageCreatandEdit>("Create and Edit",
+                new Dictionary<string, object>() { { "Fahrzeug", item } },
+                new DialogOptions() { Width = "700px", Height = "612px", Resizable = true, Draggable = true, });
+
+            if (saveChanges.HasValue)
+            {
+                CGateMetricsData.Models.Fahrzeug fahrzeug = new CGateMetricsData.Models.Fahrzeug();
+                fahrzeug.Fahrgestellnummer = item.Fahrgestellnummer;
+                fahrzeug.Kennzeichen = item.Kennzeichen;
+                fahrzeug.Hersteller = item.Hersteller;
+                fahrzeug.ZulGesamtGewicht = item.ZulGesamtGewicht;
+                _context.Add(fahrzeug);
+                _fahrzeug.Add(fahrzeug);
+                await _context.SaveChangesAsync();
+            }
+        }
 
         protected async Task EditButton(CGateMetricsData.Models.Fahrzeug item)
         {

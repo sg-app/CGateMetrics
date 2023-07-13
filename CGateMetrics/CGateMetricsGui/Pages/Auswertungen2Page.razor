@@ -1,0 +1,51 @@
+﻿@page "/Auswertung2"
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <RadzenDatePicker @bind-Value="_startTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
+        </div>
+        <div class="col-3">
+            <RadzenDatePicker @bind-Value="_endTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
+        </div>
+        <div class="col-3">
+            <RadzenButton Text="LadeDaten" Click="LoadData" />
+        </div>
+    </div>
+    <div class="row pt-2">
+        <RadzenCard>
+            <RadzenRow JustifyContent="JustifyContent.Center">
+                <RadzenText TextStyle="TextStyle.H3">Gewichtsverlauf Einfahrende Lkws</RadzenText>
+            </RadzenRow>
+            <CGateMetricsGui.Components.Diagramms2.WeightSeries2 Data="@_weightDataItemList" />
+        </RadzenCard>
+    </div>
+    <div class="row pt-2">
+        <RadzenCard>
+            <RadzenRow JustifyContent="JustifyContent.Center">
+                <RadzenText TextStyle="TextStyle.H3">Anzahl Lkws pro Tag</RadzenText>
+            </RadzenRow>
+            <CGateMetricsGui.Components.Diagramms2.CountLkw2 Data="@_countLkwMonthList" />
+        </RadzenCard>
+    </div>
+    <div class="row pt-2">
+        <RadzenCard>
+            <RadzenRow JustifyContent="JustifyContent.Center">
+                <RadzenText TextStyle="TextStyle.H3">Anzahl Buchungen pro Standort</RadzenText>
+            </RadzenRow>
+            <CGateMetricsGui.Components.Diagramms2.BookingsOnLocation Data="@_bookingCountOfLocationList" />
+        </RadzenCard>
+    </div>
+
+    <div class="row pt-2">
+        <RadzenCard>
+            <RadzenRow JustifyContent="JustifyContent.Center">
+                <RadzenText TextStyle="TextStyle.H3">Overload LKWs</RadzenText>
+            </RadzenRow>
+            <CGateMetricsGui.Components.Diagramms.OverloadPercent />
+        </RadzenCard>
+    </div>
+</div>
+
+@code {
+
+}
