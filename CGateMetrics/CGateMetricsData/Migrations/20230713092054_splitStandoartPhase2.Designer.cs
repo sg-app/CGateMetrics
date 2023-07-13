@@ -4,6 +4,7 @@ using CGateMetricsData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CGateMetricsData.Migrations
 {
     [DbContext(typeof(CGateMetricsDbContext))]
-    partial class CGateMetricsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230713092054_splitStandoartPhase2")]
+    partial class splitStandoartPhase2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
