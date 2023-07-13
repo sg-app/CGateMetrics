@@ -27,6 +27,8 @@ namespace CGateMetricsGui.Pages
 
         bool DisableAusweisId { get; set; }
 
+        bool DisableUpdateGrid { get; set; }
+
         protected async override Task OnInitializedAsync()
         {
              _fahrer = await _context.Fahrer.ToListAsync();
@@ -144,20 +146,16 @@ namespace CGateMetricsGui.Pages
             _context.Update(fahrer);
 
             _context.SaveChanges();
+
+            _fahrerGrid.Reload();
+
         }
 
         async Task SaveRow(CGateMetricsData.Models.Fahrer fahrer)
         {
-            int checkFahrerInList = _fahrer.Where(f => f.AusweisId == fahrer.AusweisId).Count();
-            if(checkFahrerInList == 0)
-            {
-                await _fahrerGrid.UpdateRow(fahrer);
-            }
-            else
-            {
-                DialogService.Alert("AusweisId bereits vergeben!", "Achtung", new AlertOptions() { OkButtonText = "Yes" });
-            }
 
+              await _fahrerGrid.UpdateRow(fahrer);
+              await _fahrerGrid.Reload();
         }
 
         void CancelEdit(CGateMetricsData.Models.Fahrer fahrer)
@@ -222,20 +220,29 @@ namespace CGateMetricsGui.Pages
             DisableAusweisId = false;
             fahrerToInsert = new CGateMetricsData.Models.Fahrer();
             await _fahrerGrid.InsertRow(fahrerToInsert);
+
+
         }
 
-        void OnCreateRow(CGateMetricsData.Models.Fahrer fahrer)
+        
+        async Task OnCreateRow(CGateMetricsData.Models.Fahrer fahrer)
         {
             int createFahrer = _context.Fahrer.Where(f => f.AusweisId == fahrer.AusweisId).Count();
                 
             if (createFahrer == 0)
             {
                 _context.Add(fahrer);
-
                 _context.SaveChanges();
+                _fahrer.Add(fahrer);
+                fahrerToInsert = fahrer;
+            }
+            else
+            {
+                fahrerToInsert = null;
             }
 
-            fahrerToInsert = null;
+
+
         }
 
 
