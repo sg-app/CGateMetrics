@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 using Radzen;
 using Radzen.Blazor;
+using System.Linq.Dynamic.Core;
 
 namespace CGateMetricsGui.Pages
 {
@@ -23,12 +24,14 @@ namespace CGateMetricsGui.Pages
         public List<string> AusweisIdList { get; set; }
         public List<string> FahrgestellnummerList { get; set; }
 
+        public List<int> StandortIdList { get; set; }
+
         Buchung buchung = new() {
             UhrzeitIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0),
             UhrzeitOut = null,
             AusweisId = "",
             Fahrgestellnummer = "",
-            Standort = "",
+            StandortId = 0,
             GewichtIn = 0,
             GewichtOut = 0,
             Gefahrgut = ""
@@ -45,6 +48,7 @@ namespace CGateMetricsGui.Pages
 
             AusweisIdList = await _context.Fahrer.Select(x => x.AusweisId).ToListAsync();
             FahrgestellnummerList = await _context.Fahrzeuge.Select(x => x.Fahrgestellnummer).ToListAsync();
+            StandortIdList = await _context.Standort.Select(x => x.Id).ToListAsync();
         }
 
         public async Task SubmitButtonPressed()
@@ -59,6 +63,7 @@ namespace CGateMetricsGui.Pages
         public async Task CreateButtonPressed()
         {
             await _context.Buchungen.AddAsync(buchung);
+            buchung.Standort = _context.Standort.Where(y => y.Id == buchung.StandortId).Select(x => x.Standortname).First();
             await _context.SaveChangesAsync();
             Navi.NavigateTo("/Buchungen");
         }

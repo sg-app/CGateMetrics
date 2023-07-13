@@ -15,6 +15,8 @@ namespace CGateMetricsData
         public virtual DbSet<Buchung> Buchungen { get; set; }
         public virtual DbSet<Standort> Standort { get; set; }
 
+        public virtual DbSet<Standort> Standort { get; set; }
+
         public CGateMetricsDbContext(DbContextOptions<CGateMetricsDbContext> options) : base (options)
         {
             
