@@ -13,7 +13,7 @@ else{
 <h3>Edit Buchung</h3>
 }
 
-<RadzenTemplateForm TItem="Buchung" Data=@buchung Submit=@SubmitButtonPressed>
+<RadzenTemplateForm TItem="Buchung" Data=@buchung OnInvalidSubmit=@SubmitButtonPressed>
 <RadzenFieldset Text="Buchung">
     <RadzenStack Gap="1rem">
         <RadzenRow AlignItems="AlignItems.Center">
