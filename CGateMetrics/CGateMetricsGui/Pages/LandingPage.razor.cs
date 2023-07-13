@@ -38,6 +38,7 @@ namespace CGateMetricsGui.Pages
 
                 if(_locations.Count > 0)
                 {
+                    Logger.LogInformation($"Locations loaded. Select first one.");
                     await LocationChangedHandler(_locations[0].Id);
                 }
         
@@ -47,6 +48,8 @@ namespace CGateMetricsGui.Pages
         }
         private async Task LoadData()
         {
+            Logger.LogInformation($"Load all required data from DbContext.");
+
             _isBusy = true;
             _currentIn = await Context.Buchungen
                 .Where(f => f.StandortId == _currentLocationId && f.UhrzeitOut == null)
@@ -68,12 +71,14 @@ namespace CGateMetricsGui.Pages
 
         private async Task LocationChangedHandler(object locationId)
         {
+            Logger.LogDebug($"Location changed to Id: {locationId}");
             _currentLocationId = (int)locationId;
             await LoadData();
         }
 
         private void NewBookingHandler()
         {
+            Logger.LogInformation($"Navigate to new booking page.");
             NavigationManager.NavigateTo("/CreateBuchung");
         }
     }
