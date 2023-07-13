@@ -44,6 +44,7 @@ namespace CGateMetricsGui.Pages
                 .Select(s =>
                 new CurrentVehiclesIn
                 {
+                    BookingId = s.BuchungsId,
                     Kennzeichen = s.Fahrzeug.Kennzeichen,
                     Fahrer = $"{s.Fahrer.Anrede} {s.Fahrer.Vorname} {s.Fahrer.Nachname}",
                     Firma = s.Fahrer.Firma
