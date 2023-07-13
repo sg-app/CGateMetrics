@@ -1,6 +1,7 @@
 ﻿using CGateMetricsData;
 using CGateMetricsData.Models;
 using CGateMetricsGui.Components;
+using CGateMetricsGui.Interfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 using Radzen;
@@ -12,11 +13,14 @@ namespace CGateMetricsGui.Pages
     public partial class CreateBuchung
     {
 
-        [Inject] 
+        [Inject]
         public CGateMetricsDbContext _context { get; set; }
 
         [Inject]
         NavigationManager Navi { get; set; }
+
+        [Inject]
+        IPageHistoryService PageHistory { get; set; }
 
         [Parameter]
         public int Id { get; set; } = 0;
@@ -26,7 +30,8 @@ namespace CGateMetricsGui.Pages
 
         public List<int> StandortIdList { get; set; }
 
-        Buchung buchung = new() {
+        Buchung buchung = new()
+        {
             UhrzeitIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0),
             UhrzeitOut = null,
             AusweisId = "",
@@ -37,11 +42,11 @@ namespace CGateMetricsGui.Pages
             Gefahrgut = ""
         };
 
-        
+
 
         protected async override Task OnParametersSetAsync()
         {
-            if (Id!=0)
+            if (Id != 0)
             {
                 buchung = await _context.Buchungen.FindAsync(Id);
             }
@@ -54,10 +59,10 @@ namespace CGateMetricsGui.Pages
         public async Task SubmitButtonPressed()
         {
 
-                _context.Update(buchung);
-                await _context.SaveChangesAsync();
-                Navi.NavigateTo("/Buchungen"); 
-
+            _context.Update(buchung);
+            await _context.SaveChangesAsync();
+            //Navi.NavigateTo("/Buchungen");
+            await PageHistory.Back();
         }
 
         public async Task CreateButtonPressed()
@@ -65,7 +70,8 @@ namespace CGateMetricsGui.Pages
             await _context.Buchungen.AddAsync(buchung);
             buchung.StandortId = _context.Standort.Where(y => y.Id == buchung.StandortId).Select(x => x.Id).First();
             await _context.SaveChangesAsync();
-            Navi.NavigateTo("/Buchungen");
+            //Navi.NavigateTo("/Buchungen");
+            await PageHistory.Back();
         }
 
     }
