@@ -31,7 +31,7 @@ namespace CGateMetricsGui.Pages
             if(firstRender)
             {
                 _locations = await Context.Buchungen
-                    .GroupBy(f => f.Standort)
+                    .GroupBy(f => f.Standort.Standortname)
                     .Select(f => f.Key)
                     .OrderBy(f => f)
                     .ToListAsync();
@@ -48,11 +48,11 @@ namespace CGateMetricsGui.Pages
         {
             _isBusy = true;
             _currentIn = await Context.Buchungen
-                .Where(f => f.Standort == _currentLocation && f.UhrzeitOut == null)
+                .Where(f => f.Standort.Standortname == _currentLocation && f.UhrzeitOut == null)
                 .CountAsync();
 
             _currentVehiclesIn = await Context.Buchungen
-                .Where(f => f.Standort == _currentLocation && f.UhrzeitOut == null)
+                .Where(f => f.Standort.Standortname == _currentLocation && f.UhrzeitOut == null)
                 .Select(s =>
                 new CurrentVehiclesIn
                 {
