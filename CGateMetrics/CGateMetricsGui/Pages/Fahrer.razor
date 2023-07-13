@@ -138,24 +138,25 @@
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Property="Firma" Title="Firma" Width="160px">
             <EditTemplate Context="fahrer">
                 <RadzenTextBox @bind-Value="fahrer.Firma" Style="width:100%; display: block" />
+                <ValidationMessage For="@(() => fahrer.Firma)" />
             </EditTemplate>
         </RadzenDataGridColumn>
 
 
 
-        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Context="order" Filterable="false" Sortable="false" TextAlign="TextAlign.Right" Width="156px">
-                    <Template Context="order">
-                        <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@(args => EditRow(order))" @onclick:stopPropagation="true">
+        <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Context="fahrer" Filterable="false" Sortable="false" TextAlign="TextAlign.Right" Width="156px">
+                    <Template Context="fahrer">
+                        <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@(args => EditRow(fahrer))" @onclick:stopPropagation="true">
                         </RadzenButton>
-                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Variant="Variant.Flat" Shade="Shade.Lighter" Size="ButtonSize.Medium" class="my-1 ms-1" Click="@(args => DeleteRow(order))" @onclick:stopPropagation="true">
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Variant="Variant.Flat" Shade="Shade.Lighter" Size="ButtonSize.Medium" class="my-1 ms-1" Click="@(args => DeleteRow(fahrer))" @onclick:stopPropagation="true">
                         </RadzenButton>
                     </Template>
-                    <EditTemplate Context="order">
-                        <RadzenButton Icon="check" ButtonStyle="ButtonStyle.Success" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@((args) => SaveRow(order))">
+                    <EditTemplate Context="fahrer">
+                        <RadzenButton Icon="check" ButtonStyle="ButtonStyle.Success" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@((args) => SaveRow(fahrer))">
                         </RadzenButton>
-                        <RadzenButton Icon="close" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" class="my-1 ms-1" Click="@((args) => CancelEdit(order))">
+                        <RadzenButton Icon="close" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" class="my-1 ms-1" Click="@((args) => CancelEdit(fahrer))">
                         </RadzenButton>
-                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Variant="Variant.Flat" Shade="Shade.Lighter" Size="ButtonSize.Medium" class="my-1 ms-1" Click="@(args => DeleteRow(order))">
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Variant="Variant.Flat" Shade="Shade.Lighter" Size="ButtonSize.Medium" class="my-1 ms-1" Click="@(args => DeleteRow(fahrer))">
                         </RadzenButton>
                     </EditTemplate>
                 </RadzenDataGridColumn>
