@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Logging.ClearProviders();
-builder.Logging.AddNLog(Path.Combine("Config","NLog.config"));
+builder.Logging.AddNLog(Path.Combine("Config", "NLog.config"));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
