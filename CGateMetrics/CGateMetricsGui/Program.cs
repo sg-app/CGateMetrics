@@ -1,4 +1,6 @@
 using CGateMetricsData;
+using CGateMetricsGui.Interfaces;
+using CGateMetricsGui.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
@@ -11,6 +13,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddData(builder.Configuration);
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<TooltipService>();
+builder.Services.AddScoped<IPageHistoryService, PageHistoryService>();
 
 
 
