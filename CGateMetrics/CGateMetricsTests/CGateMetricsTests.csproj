@@ -27,4 +27,8 @@
     <ProjectReference Include="..\CGateMetricsApi\CGateMetricsApi.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>

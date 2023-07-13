@@ -23,7 +23,10 @@ namespace CGateMetricsData.Models
         public int? GewichtOut { get; set; }
         public string? Gefahrgut { get; set; }
 
+        public int? StandortId { get; set; }
+
         public Fahrer Fahrer { get; set; }
         public Fahrzeug Fahrzeug { get; set; }
+        public Standort Location { get; set; }
     }
 }
