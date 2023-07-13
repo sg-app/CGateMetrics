@@ -1,10 +1,29 @@
 ﻿@using CGateMetricsGui.Models;
 
+
+<RadzenCard>
+    <RadzenRow>
+        <RadzenColumn>
+            <RadzenText>Kennzeichen</RadzenText>
+        </RadzenColumn>
+        <RadzenColumn>
+            <RadzenText>Fahrer</RadzenText>
+        </RadzenColumn>
+        <RadzenColumn>
+            <RadzenText>Firma</RadzenText>
+        </RadzenColumn>
+        <RadzenColumn>
+            
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenCard>
+
+
 @if (Data != null)
 {
     @foreach (var item in Data)
     {
-        <RadzenCard>
+        <RadzenCard class="mt-2">
             <RadzenRow>
                 <RadzenColumn>
                     <RadzenText>@item.Kennzeichen</RadzenText>
