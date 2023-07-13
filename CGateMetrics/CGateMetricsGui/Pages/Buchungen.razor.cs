@@ -15,7 +15,10 @@ namespace CGateMetricsGui.Pages
 
         [Inject] 
         public CGateMetricsDbContext _context { get; set; }
-        
+
+        [Inject]
+        public NavigationManager Navi { get; set; }
+
         List<CGateMetricsData.Models.Buchung> _buchungen = new();
 
         protected async override Task OnInitializedAsync()
@@ -24,54 +27,38 @@ namespace CGateMetricsGui.Pages
         }
 
 
+        //protected async Task EditButton(CGateMetricsData.Models.Buchung item)
+        //{
+        //    bool saveChanges = await DialogService.OpenAsync<BuchungenCreateAndEdit>("Create and Edit",
+        //               new Dictionary<string, object>() { { "Buchung", item } },
+        //               new DialogOptions() { Width = "700px", Height = "512px", Resizable = true, Draggable = true });
+
+        //    if(saveChanges)
+        //    {
+        //        var buchung = await _context.Buchungen.FindAsync(item.BuchungsId);
+        //        buchung.UhrzeitIn = item.UhrzeitIn;
+        //        buchung.UhrzeitOut = item.UhrzeitOut;
+        //        buchung.AusweisId = item.AusweisId;
+        //        buchung.Fahrgestellnummer = item.Fahrgestellnummer;
+        //        buchung.Standort = item.Standort;
+        //        buchung.GewichtIn = item.GewichtIn;
+        //        buchung.GewichtOut = item.GewichtOut;
+        //        buchung.Gefahrgut = item.Gefahrgut;
+        //        _context.Update(buchung);
+        //        await _context.SaveChangesAsync();
+        //    }
+        //}
+
         protected async Task EditButton(CGateMetricsData.Models.Buchung item)
         {
-            bool saveChanges = await DialogService.OpenAsync<BuchungenCreateAndEdit>("Create and Edit",
-                       new Dictionary<string, object>() { { "Buchung", item } },
-                       new DialogOptions() { Width = "700px", Height = "512px", Resizable = true, Draggable = true });
-
-            if(saveChanges)
-            {
-                var buchung = await _context.Buchungen.FindAsync(item.BuchungsId);
-                buchung.UhrzeitIn = item.UhrzeitIn;
-                buchung.UhrzeitOut = item.UhrzeitOut;
-                buchung.AusweisId = item.AusweisId;
-                buchung.Fahrgestellnummer = item.Fahrgestellnummer;
-                buchung.Standort = item.Standort;
-                buchung.GewichtIn = item.GewichtIn;
-                buchung.GewichtOut = item.GewichtOut;
-                buchung.Gefahrgut = item.Gefahrgut;
-                _context.Update(buchung);
-                await _context.SaveChangesAsync();
-            }
+            Navi.NavigateTo($"/CreateBuchung/{item.BuchungsId}");
         }
 
-        protected async Task PostButton(CGateMetricsData.Models.Buchung item)
+
+        protected async Task CreateButton()
         {
-            bool saveChanges = await DialogService.OpenAsync<BuchungenCreateAndEdit>("Add new",
-                       new Dictionary<string, object>() { { "Buchung", item } },
-                       new DialogOptions() { Width = "700px", Height = "512px", Resizable = true, Draggable = true });
-
-            if (saveChanges)
-            {
-                var buchungToAdd = new Buchung()
-                {
-                    UhrzeitIn = item.UhrzeitIn,
-                    UhrzeitOut = item.UhrzeitOut,
-                    AusweisId = item.AusweisId,
-                    Fahrgestellnummer = item.Fahrgestellnummer,
-                    Standort = item.Standort,
-                    GewichtIn = item.GewichtIn,
-                    GewichtOut = item.GewichtOut,
-                    Gefahrgut = item.Gefahrgut
-                };
-
-                await _context.AddAsync(buchungToAdd);
-                await _context.SaveChangesAsync();
-            }
+            Navi.NavigateTo($"/CreateBuchung/");
         }
-
-
 
         protected async Task DeleteButton(CGateMetricsData.Models.Buchung item)
         {

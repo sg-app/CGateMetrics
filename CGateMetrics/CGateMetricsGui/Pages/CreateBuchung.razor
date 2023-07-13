@@ -1,0 +1,104 @@
+﻿@page "/CreateBuchung/{id:int}"
+@page "/CreateBuchung"
+
+@if(Id == 0)
+{
+    <PageTitle>Create a new Buchung</PageTitle>
+    <h3>Create a new Buchung</h3>
+}
+else{
+<PageTitle>Edit Buchung</PageTitle>
+<h3>Edit Buchung</h3>
+}
+
+<RadzenFieldset Text="Buchung">
+    <RadzenStack Gap="1rem">
+        <RadzenRow AlignItems="AlignItems.Center">
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenLabel Text="Zeit Ankunft" />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="8">
+                <RadzenDatePicker @bind-Value="buchung.UhrzeitIn" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" />
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow AlignItems="AlignItems.Center">
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenLabel Text="Zeit Abfahrt" />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="8">
+                <RadzenDatePicker @bind-Value="buchung.UhrzeitOut" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" />
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow AlignItems="AlignItems.Center">
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenLabel Text="Ausweis Id" />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="8">
+                <RadzenTextBox class="w-100" @bind-Value="buchung.AusweisId" />
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow AlignItems="AlignItems.Center">
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenLabel Text="Standort" />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="8">
+                <RadzenTextBox class="w-100" @bind-Value="buchung.Standort" />
+            </RadzenColumn>
+        </RadzenRow>
+
+        <RadzenRow AlignItems="AlignItems.Center">
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenLabel Text="Fahrgestellnummer" />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="8">
+                <RadzenTextBox class="w-100" @bind-Value="buchung.Fahrgestellnummer" />
+            </RadzenColumn>
+        </RadzenRow>
+
+        <RadzenRow AlignItems="AlignItems.Center">
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenLabel Text="Gewicht Ankunft" />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="8">
+                <RadzenNumeric class="w-100" @bind-Value="buchung.GewichtIn" />
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow AlignItems="AlignItems.Center">
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenLabel Text="Gewicht Abfahrt" />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="8">
+                <RadzenNumeric class="w-100" @bind-Value="buchung.GewichtOut" />
+            </RadzenColumn>
+        </RadzenRow>
+
+        <RadzenRow AlignItems="AlignItems.Center">
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenLabel Text="Gefahrgut" />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="8">
+                <RadzenTextBox class="w-100" @bind-Value="buchung.Gefahrgut" />
+            </RadzenColumn>
+        </RadzenRow>
+
+        @if (Id != 0)
+        {
+        <div class="col-md-6 col-lg-4 p-3">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Daten absenden</RadzenText>
+                <RadzenButton Click="@SubmitButtonPressed" Text="Daten absenden" ButtonStyle="ButtonStyle.Primary" />
+            </RadzenCard>
+            </div>
+
+        }
+        else
+        {
+            <div class="col-md-6 col-lg-4 p-3">
+                <RadzenCard>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Create</RadzenText>
+                    <RadzenButton Click="@CreateButtonPressed" Text="Create" ButtonStyle="ButtonStyle.Primary" />
+                </RadzenCard>
+            </div>
+        }
+    </RadzenStack>
+</RadzenFieldset>
