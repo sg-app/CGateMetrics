@@ -89,7 +89,14 @@ namespace CGateMetricsTests
 
             };
 
+            IList<Standort> standorte = new List<Standort> { 
+                new(){Id=1, Standortname= "Wolfsburg" },
+                new(){Id=2, Standortname= "Salzgitter" },
+                new(){Id=3, Standortname= "Zwickau" },
+                };
+
             buchungContextMock.Setup(x => x.Buchungen).ReturnsDbSet(buchungen);
+            buchungContextMock.Setup(x => x.Standort).ReturnsDbSet(standorte);
             var sut = new FahrzeugAbfrageService(buchungContextMock.Object);
 
 
