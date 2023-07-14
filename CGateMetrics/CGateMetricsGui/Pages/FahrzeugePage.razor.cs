@@ -34,7 +34,7 @@ namespace CGateMetricsGui.Pages
                 new Dictionary<string, object>() { { "Fahrzeug", item } },
                 new DialogOptions() { Width = "700px", Height = "612px", Resizable = true, Draggable = true, });
 
-            if (item.Fahrgestellnummer != null | item.Hersteller != null | item.Kennzeichen != null)
+            if (item.Fahrgestellnummer != null & item.Hersteller != null & item.Kennzeichen != null)
             {
 
 
