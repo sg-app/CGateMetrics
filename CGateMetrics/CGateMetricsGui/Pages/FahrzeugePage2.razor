@@ -1,0 +1,36 @@
+﻿@page "/Fahrzeuge2"
+@using CGateMetricsData.Models;
+
+<RadzenText TextStyle="TextStyle.H3">Fahrzeuge</RadzenText>
+
+<RadzenButton ButtonStyle="ButtonStyle.Primary" Icon="add_circle_outline" class="mt-2 mb-4" Text="Neues Fahrzeug" Click="@InsertButton" />
+
+<RadzenDataGrid @ref="_grid" 
+                LoadData="@LoadData" 
+                IsLoading="@_isLoading"
+                Count="@_count"
+                AllowFiltering="true" 
+                AllowColumnResize="true" 
+                AllowAlternatingRows="false" 
+                FilterMode="FilterMode.SimpleWithMenu" 
+                AllowSorting="true" PageSize="10" 
+                AllowPaging="true" 
+                PagerHorizontalAlign="HorizontalAlign.Left" 
+                ShowPagingSummary="true"
+                Data="@_data" 
+                TItem="Fahrzeug" 
+                LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn TItem="Fahrzeug" Property="Fahrgestellnummer" Title="Fahrgestellnummer" Frozen="true" Width="160px" />
+        <RadzenDataGridColumn TItem="Fahrzeug" Property="Hersteller" Title="Hersteller" Width="160px" />
+        <RadzenDataGridColumn TItem="Fahrzeug" Property="Kennzeichen" Title="Kennzeichen" Width="200px" />
+        <RadzenDataGridColumn TItem="Fahrzeug" Property="ZulGesamtGewicht" Title="ZulGesamtGewicht" Width="120px" />
+
+        <RadzenDataGridColumn TItem="Fahrzeug" Width="160px" Filterable="false" Sortable="false">
+            <Template Context="item">
+                <RadzenButton Click=@(args => EditButton(@item)) Text="Edit" Icon="edit" ButtonStyle="ButtonStyle.Warning" />
+                <RadzenButton Click=@(args => DeleteButton(@item)) Text="Delete" Icon="delete" ButtonStyle="ButtonStyle.Danger" />
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>

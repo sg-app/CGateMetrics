@@ -1,0 +1,102 @@
+﻿@using CGateMetricsData.Models;
+@using CGateMetricsData;
+
+<RadzenCard>
+    <RadzenTemplateForm TItem="Fahrzeug" Data=@_fahrzeug Submit=@SubmitButtonPressed>
+        <RadzenStack Gap="1rem">
+            <RadzenRow AlignItems="AlignItems.Center">
+                <RadzenColumn Size="12" SizeMD="4">
+                    <RadzenLabel Text="Fahrgestellnummer" />
+                </RadzenColumn>
+                <RadzenColumn Size="12" SizeMD="8">
+                    <RadzenTextBox class="w-100" style="display: block" Name="Fahrgestellnummer" @bind-Value="_fahrzeug.Fahrgestellnummer" Disabled="@(!_isNew)" />
+                    <RadzenLengthValidator Component="Fahrgestellnummer" Min="3" Max="50" Text="Muss zwischen 3 und 5 Zeichen sein." Style="position: absolute" />
+                    <RadzenCustomValidator Component="Fahrgestellnummer" Validator="@(() => ValidateFahrgestellnummer(_fahrzeug.Fahrgestellnummer))" Text="Fahrgestellnummer exists bereits." Style="position: absolute" />
+                </RadzenColumn>
+            </RadzenRow>
+
+            <RadzenRow AlignItems="AlignItems.Center">
+                <RadzenColumn Size="12" SizeMD="4">
+                    <RadzenLabel Text="Hersteller" />
+                </RadzenColumn>
+                <RadzenColumn Size="12" SizeMD="8">
+                    <RadzenTextBox class="w-100" style="display: block" Name="Hersteller" @bind-Value="_fahrzeug.Hersteller" />
+                    <RadzenLengthValidator Component="Hersteller" Min="3" Max="50" Text="Muss zwischen 3 und 5 Zeichen sein." Style="position: absolute" />
+                </RadzenColumn>
+            </RadzenRow>
+
+            <RadzenRow AlignItems="AlignItems.Center">
+                <RadzenColumn Size="12" SizeMD="4">
+                    <RadzenLabel Text="Kennzeichen" />
+                </RadzenColumn>
+                <RadzenColumn Size="12" SizeMD="8">
+                    <RadzenTextBox class="w-100" style="display: block" Name="Kennzeichen" @bind-Value="_fahrzeug.Kennzeichen" />
+                    <RadzenLengthValidator Component="Kennzeichen" Min="3" Max="50" Text="Muss zwischen 3 und 5 Zeichen sein." Style="position: absolute" />
+                </RadzenColumn>
+            </RadzenRow>
+
+            <RadzenRow AlignItems="AlignItems.Center">
+                <RadzenColumn Size="12" SizeMD="4">
+                    <RadzenLabel Text="ZulGesamtGewicht" />
+                </RadzenColumn>
+                <RadzenColumn Size="12" SizeMD="8">
+                    <RadzenNumeric class="w-100" style="display: block" Min=3 Max="50" Step="1" Name="ZulGesamtGewicht" @bind-Value="_fahrzeug.ZulGesamtGewicht" />
+                    <RadzenNumericRangeValidator Component="ZulGesamtGewicht" Min="3" Max="50" Text="Muss zwischen 3 und 50 tonnen liegen." Style="position: absolute" />
+                </RadzenColumn>
+            </RadzenRow>
+
+            <RadzenRow class="mt-3">
+                <RadzenButton ButtonType="ButtonType.Submit" Text="@(_isNew ? "Erstellen" : "Ändern")" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Click="@CloseButtonPressed" Text="Schliesen" ButtonStyle="ButtonStyle.Secondary" />
+            </RadzenRow>
+        </RadzenStack>
+    </RadzenTemplateForm>
+</RadzenCard>
+
+@code {
+    [Inject] public DialogService DialogService { get; set; }
+    [Inject] public CGateMetricsDbContext Context { get; set; }
+    [Parameter] public Fahrzeug Fahrzeug { get; set; }
+    private Fahrzeug _fahrzeug;
+    private bool _isNew = true;
+
+    protected override Task OnParametersSetAsync()
+    {
+        _fahrzeug = new();
+        _fahrzeug.ZulGesamtGewicht = 3;
+
+        if (!String.IsNullOrEmpty(Fahrzeug.Fahrgestellnummer))
+        {
+            _isNew = false;
+            _fahrzeug.Fahrgestellnummer = Fahrzeug.Fahrgestellnummer;
+            _fahrzeug.Hersteller = Fahrzeug.Hersteller;
+            _fahrzeug.Kennzeichen = Fahrzeug.Kennzeichen;
+            _fahrzeug.ZulGesamtGewicht = Fahrzeug.ZulGesamtGewicht;
+        }
+        return base.OnParametersSetAsync();
+    }
+
+    private void SubmitButtonPressed()
+    {
+        if (_isNew)
+        {
+            Fahrzeug.Fahrgestellnummer = _fahrzeug.Fahrgestellnummer;
+        }
+
+        Fahrzeug.Hersteller = _fahrzeug.Hersteller;
+        Fahrzeug.Kennzeichen = _fahrzeug.Kennzeichen;
+        Fahrzeug.ZulGesamtGewicht = _fahrzeug.ZulGesamtGewicht;
+
+        DialogService.Close(true);
+    }
+
+    private void CloseButtonPressed()
+    {
+        DialogService.Close(false);
+    }
+
+    bool ValidateFahrgestellnummer(string fahrgestellnummer)
+    {
+        return Context.Fahrzeuge.Where(f => f.Fahrgestellnummer.ToUpper() == fahrgestellnummer.ToUpper()).Count() == 0;
+    }
+}
