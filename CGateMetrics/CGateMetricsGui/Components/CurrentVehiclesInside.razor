@@ -23,8 +23,8 @@
 {
     @foreach (var item in Data)
     {
-        <RadzenCard class="mt-2 rz-background-color-base-200">
-            <RadzenRow>
+        <RadzenCard class="@((Data.IndexOf(item) % 2 == 1) ? "mt-2 py-1 rz-background-color-base-100" : "mt-2 py-1 rz-background-color-base-300")">
+            <RadzenRow AlignItems="AlignItems.Center">
                 <RadzenColumn>
                     <RadzenText>@item.Kennzeichen</RadzenText>
                 </RadzenColumn>
@@ -50,4 +50,6 @@
     {
         NavigationManager.NavigateTo($"/CreateBuchung/{item.BookingId}");
     }
+
+    
 }
