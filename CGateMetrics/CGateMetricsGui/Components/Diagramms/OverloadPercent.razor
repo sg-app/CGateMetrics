@@ -4,15 +4,15 @@
 
 
 
-<RadzenRow class="rz-text-align-center rz-border-white" Gap="1rem">
+<RadzenRow class="rz-text-align-center" Gap="1rem">
     <RadzenColumn Size="12">
-        <RadzenCard>
+        <RadzenCard class="rz-background-color-base-100" Variant="Variant.Flat">
             <RadzenCheckBox @bind-Value="@showDataLabels" Name="dataLabels"></RadzenCheckBox>
             <RadzenLabel Text="Show Data Labels" For="dataLabels" Style="margin-left: 8px; vertical-align: middle;" />
         </RadzenCard>
     </RadzenColumn>
 </RadzenRow>
-<RadzenRow class="rz-text-align-center rz-border-white" Gap="1rem">
+<RadzenRow class="rz-text-align-center" Gap="1rem">
     <RadzenColumn Size="4" class="rz-background-color-info-lighter rz-color-black rz-p-5">
         <RadzenChart>
           2018
