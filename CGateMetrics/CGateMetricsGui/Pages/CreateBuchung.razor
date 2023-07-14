@@ -13,7 +13,7 @@ else{
 <h3>Edit Buchung</h3>
 }
 
-<RadzenTemplateForm TItem="Buchung" Data=@buchung OnInvalidSubmit=@SubmitButtonPressed>
+<RadzenTemplateForm TItem="Buchung" Data=@buchung Submit=@SubmitButtonPressed>
 <RadzenFieldset Text="Buchung">
     <RadzenStack Gap="1rem">
         <RadzenRow AlignItems="AlignItems.Center">
@@ -21,7 +21,8 @@ else{
                 <RadzenLabel Text="Zeit Ankunft" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenDatePicker @bind-Value="buchung.UhrzeitIn"/>
+                <RadzenDatePicker @bind-Value="buchung.UhrzeitIn" Name ="UhrzeitIn"/>
+                    <RadzenRequiredValidator Text="Zeit Ankunft is required" Component="UhrzeitIn" Popup=true />
             </RadzenColumn>
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center">
@@ -38,7 +39,7 @@ else{
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
                 <RadzenDropDown @bind-Value="@buchung.AusweisId" Name="AusweisId" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@AusweisIdList" AllowClear=true Placeholder="Select AusweisId" Style="width: 100%; max-width: 400px;" />
-                    <RadzenRequiredValidator Text="Name is required" Component="AusweisId" Popup=true/>
+                    <RadzenRequiredValidator Text="AusweisId is required" Component="AusweisId" Popup=true />
             </RadzenColumn>
         </RadzenRow>
 
@@ -47,7 +48,8 @@ else{
                 <RadzenLabel Text="StandortId" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenDropDown @bind-Value="@buchung.StandortId" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@StandortIdList" AllowClear=true Placeholder="Select StandortId" Style="width: 100%; max-width: 400px;" />
+                <RadzenDropDown @bind-Value="@buchung.StandortId" Name="Standort" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@StandortIdList" AllowClear=true Placeholder="Select StandortId" Style="width: 100%; max-width: 400px;" />
+                    <RadzenRequiredValidator Text="Standort is required" Component="Standort" Popup=true />
             </RadzenColumn>
         </RadzenRow>
 
@@ -56,7 +58,8 @@ else{
                 <RadzenLabel Text="Fahrgestellnummer" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenDropDown @bind-Value="@buchung.Fahrgestellnummer" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@FahrgestellnummerList" AllowClear=true Placeholder="Select Fahrgestellnummer" Style="width: 100%; max-width: 400px;" />
+                <RadzenDropDown @bind-Value="@buchung.Fahrgestellnummer" Name=Fahrgestellnummer FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@FahrgestellnummerList" AllowClear=true Placeholder="Select Fahrgestellnummer" Style="width: 100%; max-width: 400px;" />
+                    <RadzenRequiredValidator Text="Fahrgestellnummer is required" Component="Fahrgestellnummer" Popup=true />
             </RadzenColumn>
         </RadzenRow>
 
@@ -65,7 +68,8 @@ else{
                 <RadzenLabel Text="Gewicht Ankunft" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenNumeric class="w-100" @bind-Value="buchung.GewichtIn" />
+                <RadzenNumeric class="w-100" @bind-Value="buchung.GewichtIn" Name=GewichtIn/>
+                    <RadzenRequiredValidator Text="Gewicht Ankunft is required" Component="GewichtIn" Popup=true />
             </RadzenColumn>
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center">
