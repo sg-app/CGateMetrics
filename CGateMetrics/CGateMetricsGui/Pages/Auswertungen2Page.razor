@@ -1,34 +1,40 @@
 ﻿@page "/Auswertung2"
-<div class="container">
+<div class="container p-0">
+
+
+    <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-10 rz-p-0" Variant="Variant.Flat">
     <div class="row">
-        <div class="col-3">
-            <RadzenDatePicker @bind-Value="_startTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
-        </div>
-        <div class="col-3">
-            <RadzenDatePicker @bind-Value="_endTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
-        </div>
-        <div class="col-3">
-            <RadzenButton Text="LadeDaten" Click="LoadData" />
-        </div>
-    </div>
-    <div class="row pt-2">
-        <RadzenCard>
+          <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-0 rz-p-8" Variant="Variant.Flat">
+            <RadzenRow JustifyContent="JustifyContent.Center">
+              <RadzenDatePicker @bind-Value="_startTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
+              <RadzenDatePicker @bind-Value="_endTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
+              <RadzenButton Text="LadeDaten" Click="LoadData" />
+         </RadzenRow>
+      </RadzenCard>
+      </div>
+    <div class="row">
+        <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-0 rz-p-8" Variant="Variant.Flat">
             <RadzenRow JustifyContent="JustifyContent.Center">
                 <RadzenText TextStyle="TextStyle.H3">Gewichtsverlauf Einfahrende Lkws</RadzenText>
             </RadzenRow>
             <CGateMetricsGui.Components.Diagramms2.WeightSeries2 Data="@_weightDataItemList" />
         </RadzenCard>
     </div>
-    <div class="row pt-2">
-        <RadzenCard>
+    <div class="row">
+        <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-0 rz-p-8" Variant="Variant.Flat">
             <RadzenRow JustifyContent="JustifyContent.Center">
                 <RadzenText TextStyle="TextStyle.H3">Anzahl Lkws pro Tag</RadzenText>
             </RadzenRow>
             <CGateMetricsGui.Components.Diagramms2.CountLkw2 Data="@_countLkwMonthList" />
         </RadzenCard>
     </div>
-    <div class="row pt-2">
-        <RadzenCard>
+
+
+
+    </RadzenCard>
+
+    <div class="row pt-5">
+        <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-10 rz-p-8" Variant="Variant.Flat">
             <RadzenRow JustifyContent="JustifyContent.Center">
                 <RadzenText TextStyle="TextStyle.H3">Anzahl Buchungen pro Standort</RadzenText>
             </RadzenRow>
@@ -36,14 +42,15 @@
         </RadzenCard>
     </div>
 
-    <div class="row pt-2">
-        <RadzenCard>
+    <div class="row pt-5">
+        <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-10 rz-p-8" Variant="Variant.Flat">
             <RadzenRow JustifyContent="JustifyContent.Center">
                 <RadzenText TextStyle="TextStyle.H3">Overload LKWs</RadzenText>
             </RadzenRow>
             <CGateMetricsGui.Components.Diagramms.OverloadPercent />
         </RadzenCard>
     </div>
+    <div class="row pt-5" />
 </div>
 
 @code {
