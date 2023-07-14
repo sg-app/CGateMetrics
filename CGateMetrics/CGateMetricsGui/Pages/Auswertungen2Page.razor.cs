@@ -39,6 +39,7 @@ namespace CGateMetricsGui.Pages
 
             _weightDataItemList = await Context.Buchungen
                  .Where(f => f.UhrzeitIn > _startTime && f.UhrzeitIn < _endTime)
+                 .OrderBy(f=>f.UhrzeitIn)
                  .Select(f =>
                      new WeightDataItem
                      {
