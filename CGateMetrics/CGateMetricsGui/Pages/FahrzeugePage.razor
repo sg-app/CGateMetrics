@@ -9,7 +9,8 @@
 @code
 {
     void ShowTooltip(ElementReference elementReference, TooltipOptions options = null) => TooltipService.OpenOnTheTop(elementReference, "Hier können Sie die Fahrzuege einfügen!", options);
-
+    void ShowTooltip2(ElementReference elementReference, TooltipOptions options = null) => TooltipService.OpenOnTheTop(elementReference, "Hier können Sie die Fahrzuege editieren!", options);
+    void ShowTooltip3(ElementReference elementReference, TooltipOptions options = null) => TooltipService.OpenOnTheTop(elementReference, "Hier können Sie die Fahrzuege löschen!", options);
 }
 
 @inject TooltipService TooltipService
@@ -18,12 +19,6 @@
 @inject DialogService DialogService
 
 
-
-<RadzenStack AlignItems="AlignItems.Center" Class="rz-mx-auto rz-my-12">
-
-    <RadzenImage Path="https://upload.wikimedia.org/wikipedia/de/b/b8/Continental_AG_logo.svg" Style="width: 25rem;" />
-
-</RadzenStack>
 
 <div class="rz-p-10 rz-text-align-left">
     <RadzenLink Icon="home" Path="https://localhost:7213/" Text="Go to HomePage" />
@@ -37,7 +32,7 @@
 
 <RadzenRow class="rz-text-align-left rz-border-white" Gap="1rem">
     <RadzenColumn class="rz-background-color-white rz-color-on-info-lighter rz-p-5">
-        <RadzenButton Click="@CreateNewFahrzeug" Text="Create" ButtonStyle="ButtonStyle.Info" MouseEnter="@(args => ShowTooltip(args))"/>
+        <RadzenButton Click="@CreateNewFahrzeug" Text="Create" Icon="add_circle_outline" ButtonStyle="ButtonStyle.Info" MouseEnter="@(args => ShowTooltip(args))" />
     </RadzenColumn>
 </RadzenRow>
 
@@ -54,13 +49,13 @@
     
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Width="160px" Filterable="false" Sortable="false">
             <Template Context="item">
-                <RadzenButton Click=@(args => EditButton(@item)) Text="Edit" ButtonStyle="ButtonStyle.Warning" />
+                <RadzenButton Click=@(args => EditButton(@item)) Text="Edit" Icon="edit" ButtonStyle="ButtonStyle.Warning" MouseEnter="@(args => ShowTooltip2(args))" />
             </Template>
         </RadzenDataGridColumn>
 
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Width="160px" Filterable="false" Sortable="false">
             <Template Context="item">
-                <RadzenButton Click=@(args => DeleteButton(@item)) Text="Delete" ButtonStyle="ButtonStyle.Danger" />
+                <RadzenButton Click=@(args => DeleteButton(@item)) Text="Delete" Icon="delete" ButtonStyle="ButtonStyle.Danger" MouseEnter="@(args => ShowTooltip3(args))" />
             </Template>
         </RadzenDataGridColumn>
 

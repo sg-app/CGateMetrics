@@ -11,6 +11,7 @@
             <RadzenCard>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Fahrgestellnummer</RadzenText>
                 <RadzenTextBox class="w-100" @bind-Value="Fahrzeug.Fahrgestellnummer" />
+                <RadzenRequiredValidator Component="Hersteller"  Text="Muss existieren." Style="position: absolute" />
             </RadzenCard>
         </div>
 
@@ -18,6 +19,7 @@
             <RadzenCard>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Hersteller</RadzenText>
                 <RadzenTextBox class="w-100" @bind-Value="Fahrzeug.Hersteller" />
+                <RadzenLengthValidator Component="Hersteller" Min="3" Max="50" Text="Muss zwischen 3 und 50 Zeichen sein." Style="position: absolute" />
             </RadzenCard>
         </div>
 
