@@ -52,8 +52,7 @@ namespace CGateMetricsGui.Components
         public async Task SubmitButtonPressed()
         {
 
-            if (item.Fahrgestellnummer != null && item.Hersteller != null && item.Hersteller != null &&
-                item.ZulGesamtGewicht != null)
+            if (item.Fahrgestellnummer != null &  item.Hersteller != null & item.Hersteller != null & item.ZulGesamtGewicht > 0)
             {
                 _context.Update(fahrzeug);
                 await _context.SaveChangesAsync();
