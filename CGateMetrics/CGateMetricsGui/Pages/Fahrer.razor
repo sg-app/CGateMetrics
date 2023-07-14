@@ -137,9 +137,6 @@
                 <RadzenRequiredValidator Text="Firma angeben" Component="Firma" Popup="true" />
             </EditTemplate>
         </RadzenDataGridColumn>
-
-
-
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrer" Context="fahrer" Filterable="false" Sortable="false" TextAlign="TextAlign.Right" Width="156px">
                     <Template Context="fahrer">
                         <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@(args => EditRow(fahrer))" @onclick:stopPropagation="true">
@@ -156,14 +153,6 @@
                         </RadzenButton>
                     </EditTemplate>
                 </RadzenDataGridColumn>
-
-
-
-
-
-
-
-
     </Columns>
 </RadzenDataGrid>
 

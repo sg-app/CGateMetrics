@@ -242,25 +242,6 @@ namespace CGateMetricsGui.Pages
         
         async Task OnCreateRow(CGateMetricsData.Models.Fahrer fahrer)
         {
-            //int createFahrer = _context.Fahrer.Where(f => f.AusweisId == fahrer.AusweisId).Count();
-
-            //if (createFahrer == 0)
-            //{
-            //    _context.Add(fahrer);
-            //    _context.SaveChanges();
-            //    _fahrer.Add(fahrer);
-            //    fahrerToInsert = fahrer;
-            //}
-            //else
-            //{
-            //    fahrerToInsert = null;
-            //}
-            //dbContext.Add(order);
-
-            //dbContext.SaveChanges();
-
-            //orderToInsert = null;
-
             _context.Add(fahrer);
             await _context.SaveChangesAsync();
             fahrerToInsert = null;
