@@ -39,7 +39,7 @@ namespace CGateMetricsGui.Pages
 
             _count = query.Count();
 
-            _data = query.Skip(args.Skip.Value).Take(args.Top.Value).ToList();
+            _data = await query.Skip(args.Skip.Value).Take(args.Top.Value).ToListAsync();
             _isLoading = false;
         }
 
