@@ -30,6 +30,7 @@ namespace CGateMetricsGui.Pages
         public List<string> AusweisIdList { get; set; }
         public List<string> FahrgestellnummerList { get; set; }
         public List<int> StandortIdList { get; set; }
+        public List<string> StandortNameList { get; set; }
 
         Buchung buchung = new()
         {
@@ -43,6 +44,8 @@ namespace CGateMetricsGui.Pages
             Gefahrgut = ""
         };
 
+        string currentStandortName = "";
+
         protected async override Task OnParametersSetAsync()
         {
             if (Id != 0)
@@ -52,11 +55,12 @@ namespace CGateMetricsGui.Pages
 
             AusweisIdList = await _context.Fahrer.Select(x => x.AusweisId).ToListAsync();
             FahrgestellnummerList = await _context.Fahrzeuge.Select(x => x.Fahrgestellnummer).ToListAsync();
-            StandortIdList = await _context.Standort.Select(x => x.Id).ToListAsync();
+            StandortNameList = await _context.Standort.Select(x => x.Standortname).ToListAsync();
         }
 
         public async Task SubmitButtonPressed()
         {
+            buchung.StandortId = _context.Standort.SingleOrDefault(x => x.Standortname == currentStandortName).Id;
 
             if (Id!=0)
             {

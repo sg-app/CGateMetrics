@@ -46,10 +46,10 @@ else{
 
         <RadzenRow AlignItems="AlignItems.Center">
             <RadzenColumn Size="12" SizeMD="4">
-                <RadzenLabel Text="StandortId" />
+                <RadzenLabel Text="Standort" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenDropDown @bind-Value="@buchung.StandortId" Name="Standort" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@StandortIdList" AllowClear=true Placeholder="Select StandortId" Style="width: 100%; max-width: 400px;" />
+                    <RadzenDropDown @bind-Value="@currentStandortName" Name="Standort" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterOperator="StringFilterOperator.StartsWith" AllowFiltering="true" Data="@StandortNameList" AllowClear=true Placeholder="Select Standort" Style="width: 100%; max-width: 400px;" />
                     <RadzenRequiredValidator Text="Standort is required" Component="Standort" Popup=true />
             </RadzenColumn>
         </RadzenRow>
