@@ -49,13 +49,13 @@
     
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Width="160px" Filterable="false" Sortable="false">
             <Template Context="item">
-                <RadzenButton Click=@(args => EditButton(@item)) Text="Edit" ButtonStyle="ButtonStyle.Warning" MouseEnter="@(args => ShowTooltip2(args))" />
+                <RadzenButton Click=@(args => EditButton(@item)) Text="Edit" Icon="edit" ButtonStyle="ButtonStyle.Warning" MouseEnter="@(args => ShowTooltip2(args))" />
             </Template>
         </RadzenDataGridColumn>
 
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Fahrzeug" Width="160px" Filterable="false" Sortable="false">
             <Template Context="item">
-                <RadzenButton Click=@(args => DeleteButton(@item)) Text="Delete" ButtonStyle="ButtonStyle.Danger" MouseEnter="@(args => ShowTooltip3(args))" />
+                <RadzenButton Click=@(args => DeleteButton(@item)) Text="Delete" Icon="delete" ButtonStyle="ButtonStyle.Danger" MouseEnter="@(args => ShowTooltip3(args))" />
             </Template>
         </RadzenDataGridColumn>
 
