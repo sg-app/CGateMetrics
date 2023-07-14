@@ -4,9 +4,11 @@ using CGateMetricsGui.Components;
 using CGateMetricsGui.Interfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Radzen;
 using Radzen.Blazor;
 using System.Linq.Dynamic.Core;
+using System.Xml.Linq;
 
 namespace CGateMetricsGui.Pages
 {
@@ -27,7 +29,6 @@ namespace CGateMetricsGui.Pages
 
         public List<string> AusweisIdList { get; set; }
         public List<string> FahrgestellnummerList { get; set; }
-
         public List<int> StandortIdList { get; set; }
 
         Buchung buchung = new()
@@ -41,8 +42,6 @@ namespace CGateMetricsGui.Pages
             GewichtOut = 0,
             Gefahrgut = ""
         };
-
-
 
         protected async override Task OnParametersSetAsync()
         {
@@ -73,6 +72,42 @@ namespace CGateMetricsGui.Pages
                 await _context.SaveChangesAsync();
                 //Navi.NavigateTo("/Buchungen");
                 await PageHistory.Back();
+            }
+        }
+
+        public bool checkMaxWeight(int? gewicht)
+        {
+            if(gewicht > 50)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool checkMinWeight(int? gewicht)
+        {
+            if (gewicht < 2)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool compareTime(DateTime? timeIn, DateTime? timeOut)
+        {
+            if (timeOut <= timeIn)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

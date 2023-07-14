@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
 using Radzen;
 using Radzen.Blazor;
+using System.Linq.Dynamic.Core;
+using System.Reflection.Metadata;
+
 
 namespace CGateMetricsGui.Pages
 {
@@ -15,17 +18,35 @@ namespace CGateMetricsGui.Pages
 
         [Inject] 
         public CGateMetricsDbContext _context { get; set; }
-
-        public Uri inputUri { get; set; }
+        [Inject] public ILogger<CreateBuchung> Logger { get; set; }
 
         [Inject]
         public NavigationManager Navi { get; set; }
 
-        List<CGateMetricsData.Models.Buchung> _buchungen = new();
+        List<CGateMetricsData.Models.Buchung> _buchungen;
+        private bool _isLoading = true;
+        private int _count;
 
-        protected async override Task OnInitializedAsync()
+        private async Task LoadData(LoadDataArgs args)
         {
-             _buchungen = await _context.Buchungen.ToListAsync();
+            Logger.LogInformation($"Loading all required Data. Custom filter: {args.Filter}, Custom order: {args.OrderBy}, Custom paging: Skip {args.Skip.Value} Take {args.Top.Value}");
+            _isLoading = true;
+            var query = _context.Buchungen.AsQueryable();
+
+            if (!string.IsNullOrEmpty(args.Filter))
+            {
+                query = query.Where(args.Filter);
+            }
+
+            if (!string.IsNullOrEmpty(args.OrderBy))
+            {
+                query = query.OrderBy(args.OrderBy);
+            }
+
+            _count = query.Count();
+
+            _buchungen = await query.Skip(args.Skip.Value).Take(args.Top.Value).ToListAsync();
+            _isLoading = false;
         }
 
         protected async Task EditButton(CGateMetricsData.Models.Buchung item)

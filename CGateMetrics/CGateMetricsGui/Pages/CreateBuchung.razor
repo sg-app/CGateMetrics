@@ -30,8 +30,9 @@ else{
                 <RadzenLabel Text="Zeit Abfahrt" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenDatePicker @bind-Value="buchung.UhrzeitOut"/>
-            </RadzenColumn>
+                    <RadzenDatePicker @bind-Value="buchung.UhrzeitOut" Name="UhrzeitOut" />
+                    <RadzenCustomValidator Value=@buchung.UhrzeitOut Component="UhrzeitOut" Text="Abfahrtszeit kann nicht vor Ankunftszeit liegen" Validator="@(() => compareTime(buchung.UhrzeitIn, buchung.UhrzeitOut))" Style="width: 100%; max-width: 400px;" />
+                </RadzenColumn>
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center">
             <RadzenColumn Size="12" SizeMD="4">
@@ -65,19 +66,23 @@ else{
 
         <RadzenRow AlignItems="AlignItems.Center">
             <RadzenColumn Size="12" SizeMD="4">
-                <RadzenLabel Text="Gewicht Ankunft" />
+                <RadzenLabel Text="Gewicht Ankunft (<50 t)" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
                 <RadzenNumeric class="w-100" @bind-Value="buchung.GewichtIn" Name=GewichtIn/>
                     <RadzenRequiredValidator Text="Gewicht Ankunft is required" Component="GewichtIn" Popup=true />
-            </RadzenColumn>
+                    <RadzenCustomValidator Value=@buchung.GewichtIn Component="GewichtIn" Text="Gewicht Ankunft ist überschreitet das zulässige Maximalgewicht von 50t" Validator="@(() => checkMaxWeight(buchung.GewichtIn))" Style="width: 100%; max-width: 400px;" />
+                    <RadzenCustomValidator Value=@buchung.GewichtIn Component="GewichtIn" Text="Gewicht Ankunft ist unterschreitet das zulässige Minimalgewicht von 2t" Validator="@(() => checkMinWeight(buchung.GewichtIn))" Style="width: 100%; max-width: 400px;" />
+                </RadzenColumn>
         </RadzenRow>
         <RadzenRow AlignItems="AlignItems.Center">
             <RadzenColumn Size="12" SizeMD="4">
                 <RadzenLabel Text="Gewicht Abfahrt" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="8">
-                <RadzenNumeric class="w-100" @bind-Value="buchung.GewichtOut" />
+                <RadzenNumeric class="w-100" @bind-Value="buchung.GewichtOut" Name="GewichtOut"/>
+                    <RadzenCustomValidator Value=@buchung.GewichtOut Component="GewichtOut" Text="Gewicht Abfahrt ist überschreitet das zulässige Maximalgewicht von 50t" Validator="@(() => checkMaxWeight(buchung.GewichtOut))" Style="width: 100%; max-width: 400px;" />
+                    <RadzenCustomValidator Value=@buchung.GewichtOut Component="GewichtOut" Text="Gewicht Abfahrt ist unterschreitet das zulässige Minimalgewicht von 2t" Validator="@(() => checkMinWeight(buchung.GewichtOut))" Style="width: 100%; max-width: 400px;" />
             </RadzenColumn>
         </RadzenRow>
 

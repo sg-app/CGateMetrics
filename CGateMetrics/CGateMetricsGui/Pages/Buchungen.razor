@@ -4,9 +4,23 @@
 @inject DialogService DialogService
 
 
-<RadzenDataGrid @ref="_buchungenGrid" AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
-    
-Data="@_buchungen" TItem="CGateMetricsData.Models.Buchung" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
+<RadzenDataGrid @ref="_buchungenGrid"
+                LoadData="@LoadData"
+                IsLoading="@_isLoading"
+                Count="@_count"
+                AllowFiltering="true"
+                AllowColumnResize="true"
+                AllowAlternatingRows="false"
+                FilterMode="FilterMode.SimpleWithMenu"
+                AllowSorting="true"
+                PageSize="10"
+                AllowPaging="true"
+                PagerHorizontalAlign="HorizontalAlign.Left"
+                ShowPagingSummary="true"
+                Data="@_buchungen"
+                TItem="CGateMetricsData.Models.Buchung"
+                ColumnWidth="300px"
+                LogicalFilterOperator="LogicalFilterOperator.Or">
     <Columns>
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="BuchungsId" Title="BuchungsId" Frozen="true" Width="160px" />
         <RadzenDataGridColumn TItem="CGateMetricsData.Models.Buchung" Property="UhrzeitIn" Title="Uhrzeit Ankunft" Frozen="true" Width="220px" />
