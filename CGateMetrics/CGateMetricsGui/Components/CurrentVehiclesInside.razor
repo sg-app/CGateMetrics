@@ -1,7 +1,7 @@
 ﻿@using CGateMetricsGui.Models;
 
 
-<RadzenCard>
+<RadzenCard class="rz-background-color-info-lighter">
     <RadzenRow>
         <RadzenColumn>
             <RadzenText>Kennzeichen</RadzenText>
@@ -23,7 +23,7 @@
 {
     @foreach (var item in Data)
     {
-        <RadzenCard class="mt-2">
+        <RadzenCard class="mt-2 rz-background-color-base-200">
             <RadzenRow>
                 <RadzenColumn>
                     <RadzenText>@item.Kennzeichen</RadzenText>
