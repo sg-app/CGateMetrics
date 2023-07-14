@@ -43,9 +43,9 @@ namespace CGateMetricsGui.Pages
         {
 
             var checkUniqueId = _fahrer.Where(f => f.AusweisId == id).Count();
-            if(checkUniqueId == 0)
-            { 
-                return true; 
+            if (checkUniqueId == 0)
+            {
+                return true;
             }
             else
             {

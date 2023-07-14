@@ -21,11 +21,11 @@ else
     </div>
 
     <div class="row pt-3">
-        <div class="col-2">
-            <CGateMetricsGui.Components.CounterCardWithTitle Count="@_currentIn" Title="Im Werk" />
-        </div>
         <div class="col-10">
             <CGateMetricsGui.Components.CurrentVehiclesInside Data="@_currentVehiclesIn" />
+        </div>
+        <div class="col-2">
+            <CGateMetricsGui.Components.CounterCardWithTitle Count="@_currentIn" Title="Im Werk" />
         </div>
     </div>
 }

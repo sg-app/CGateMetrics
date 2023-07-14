@@ -1,11 +1,23 @@
 ﻿@using CGateMetricsGui.Models;
-<RadzenChart>
-    <RadzenLineSeries Data="@Data" CategoryProperty="Time" Title="Gewicht" LineType="LineType.Dashed" ValueProperty="Weight">
+<RadzenChart class="mx-3">
+    <RadzenLineSeries Data="@Data" CategoryProperty="Datetime" Title="Gewicht" LineType="LineType.Dashed" ValueProperty="Weight">
         <RadzenMarkers MarkerType="MarkerType.Square" />
         <RadzenSeriesDataLabels Visible="true" />
     </RadzenLineSeries>
+    <RadzenCategoryAxis Padding="20" Formatter="@FormatCategory" />
+    <RadzenValueAxis Min="0" Max="50" Step="10" FormatString="{0:0' t'}"/>
 </RadzenChart>
 
 @code {
     [Parameter] public List<WeightDataItem> Data { get; set; }
+
+    private string FormatCategory(object value)
+    {
+        if (value != null)
+        {
+            return Convert.ToDateTime(value).ToString("dd.MM HH:mm");
+        }
+
+        return string.Empty;
+    }
 }
