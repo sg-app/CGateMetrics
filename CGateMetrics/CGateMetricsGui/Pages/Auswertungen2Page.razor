@@ -1,10 +1,10 @@
 ﻿@page "/Auswertung2"
-<div class="container p-0">
+<div class="container">
 
 
-    <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-10 rz-p-0" Variant="Variant.Flat">
+    <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-0 rz-p-0" Variant="Variant.Flat">
     <div class="row">
-          <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-0 rz-p-8" Variant="Variant.Flat">
+          <RadzenCard class="rz-background-color-base-100 rz-shadow-20  " Variant="Variant.Flat">
             <RadzenRow JustifyContent="JustifyContent.Center">
               <RadzenDatePicker @bind-Value="_startTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
               <RadzenDatePicker @bind-Value="_endTime" ShowTime="false" DateFormat="dd.MM.yyyy" />
@@ -13,7 +13,7 @@
       </RadzenCard>
       </div>
     <div class="row">
-        <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-0 rz-p-8" Variant="Variant.Flat">
+        <RadzenCard class="rz-background-color-base-100 rz-border-radius-0" Variant="Variant.Flat">
             <RadzenRow JustifyContent="JustifyContent.Center">
                 <RadzenText TextStyle="TextStyle.H3">Gewichtsverlauf Einfahrende Lkws</RadzenText>
             </RadzenRow>
@@ -21,7 +21,7 @@
         </RadzenCard>
     </div>
     <div class="row">
-        <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-0 rz-p-8" Variant="Variant.Flat">
+        <RadzenCard class="rz-background-color-base-100 rz-border-radius-0 " Variant="Variant.Flat">
             <RadzenRow JustifyContent="JustifyContent.Center">
                 <RadzenText TextStyle="TextStyle.H3">Anzahl Lkws pro Tag</RadzenText>
             </RadzenRow>
@@ -34,7 +34,7 @@
     </RadzenCard>
 
     <div class="row pt-5">
-        <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-10 rz-p-8" Variant="Variant.Flat">
+        <RadzenCard class="rz-background-color-base-100 rz-border-radius-0 " Variant="Variant.Flat">
             <RadzenRow JustifyContent="JustifyContent.Center">
                 <RadzenText TextStyle="TextStyle.H3">Anzahl Buchungen pro Standort</RadzenText>
             </RadzenRow>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="row pt-5">
-        <RadzenCard class="rz-background-color-base-100 rz-shadow-20 rz-border-radius-10 rz-p-8" Variant="Variant.Flat">
+        <RadzenCard class="rz-background-color-base-100 rz-border-radius-0 " Variant="Variant.Flat">
             <RadzenRow JustifyContent="JustifyContent.Center">
                 <RadzenText TextStyle="TextStyle.H3">Overload LKWs</RadzenText>
             </RadzenRow>
